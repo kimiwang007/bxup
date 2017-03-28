@@ -48,7 +48,7 @@ function back(){
 		<p>${message}</p>
 	</div>
 </c:if>
-<br><input type="button"  class="blue_btn" value="新建精选" onclick="javascript:window.location.href='./subscribeAdd'"/>
+<br><input type="button"  class="blue_btn" value="新建精选" onclick="javascript:window.location.href='./subscribeAdd/known'"/>
 	<input type="button" value="推荐设定" onclick="setFeedIMG();"/>
     <input type="button" value="返回" onclick="back();"/>
 	<table>
@@ -81,6 +81,7 @@ function back(){
 								<td><c:out value = "${item.tab}" /></td>
 								<td><c:out value = "${item.url}" /></td>
 								<td><c:out value = "${item.feedImg}" /></td>
+								<input name='subscribe_type' type=hidden value="${item.subscribe_type}">
 							</tr>
 						</c:forEach>
 					</table>	

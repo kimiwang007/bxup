@@ -5,18 +5,15 @@
 <sqlMap namespace="WelcomeImgSpace">
 	<typeAlias alias="WelcomeIMG" type="com.bxup.bxup.model.WelcomeIMG" />
 	<!-- select -->
-    <select id="selectById" resultClass="WelcomeIMG">    
-
-	</select>
 	<select id="selectAllWelcomePhoto" resultClass="WelcomeIMG">    
              select * from t_welcome_img where delete_status = 1
 	</select>
 	<!-- insert -->
-<!--  	<insert id="insertWelcomePhoto" parameterClass="WelcomePhoto">
+  	<insert id="insertWelcomePhoto" parameterClass="WelcomeIMG">
 		insert into
 		t_welcome_img(start_date,end_date,create_date,iphone4_img,iphone5_img,iphone6_img,iphone6p_img,iphone7_img,iphone7p_img,delete_status)
-		values(#start_date#,#end_date,#create_date#,#iphone4_img#,#iphone5_img#,#iphone6_img#,#iphone6p_img#,#iphone7_img#,#iphone7p_img#,#delete_status#)
-	</insert> -->
+		values(#start_date#,#end_date#,#create_date#,#iphone4_img#,#iphone5_img#,#iphone6_img#,#iphone6p_img#,#iphone7_img#,#iphone7p_img#,#delete_status#)
+	</insert>
 	<!-- delete -->
 	<update id="updateWelcomePhoto" parameterClass="WelcomeIMG">          
 			update t_welcome_img  

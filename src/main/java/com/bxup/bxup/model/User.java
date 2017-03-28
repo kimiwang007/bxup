@@ -43,9 +43,8 @@ public class User {
 	private List<Coach> coach;
 	
 	private List<Gym> gym;
-
-
 	
+
 	public Long getUser_Id() {
 		return user_Id;
 	}
@@ -203,11 +202,9 @@ public class User {
 	}
 
 	public void setSex(String sex) {
-		if (getGender() == 1) {
-			this.sex = "男";
-		} else {
-			this.sex = "女";
-		}
+		this.sex = sex;
 	}
+
+
 
 }

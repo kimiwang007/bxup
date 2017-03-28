@@ -13,7 +13,7 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${setType} =='known'">
+		<c:when test="${setType == 'known'}">
 			<h2>知道推荐图片设定</h2>
 		</c:when>
 		<c:otherwise>

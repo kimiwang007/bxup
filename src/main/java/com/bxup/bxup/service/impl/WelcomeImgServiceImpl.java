@@ -38,7 +38,7 @@ public class WelcomeImgServiceImpl implements WelcomeImgService{
 	public String updateWelcomePhoto(WelcomeIMG welcomePhoto){
 		Logger log = Logger.getLogger(WelcomeController.class.getName());
 		String sucflg = LoginDao.updateT_welcomePhoto(welcomePhoto);	
-		log.info("insertWelcomePhotoSuccess");
+		log.info("updateWelcomePhoto Success");
 		return sucflg;		
 	};
 	

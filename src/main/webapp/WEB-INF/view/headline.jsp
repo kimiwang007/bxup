@@ -48,7 +48,7 @@ function back(){
 		<p>${message}</p>
 	</div>
 </c:if>
-<br><input type="button"  class="blue_btn" value="新建头条" onclick="javascript:window.location.href='./subscribeAdd'"/>
+<br><input type="button"  class="blue_btn" value="新建头条" onclick="javascript:window.location.href='./subscribeAdd/headline'"/>
 	<input type="button" value="返回" onclick="back();"/>
 	<table>
 		<tr>
@@ -64,7 +64,8 @@ function back(){
 							<tr>
 								<td><c:out value = "${status.count}" /></td>	
 								<td><c:out value = "${item.title}" /></td>
-								<td><c:out value = "${item.tab}" /></td>																					
+								<td><c:out value = "${item.tab}" /></td>
+								<input name='subscribe_type' type=hidden value="${item.subscribe_type}">																					
 							</tr>
 						</c:forEach>
 					</table>	

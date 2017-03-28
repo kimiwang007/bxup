@@ -67,6 +67,9 @@ function back(){
 							<th>性别</th>
 							<th>年龄</th>
 							<th>体脂率</th>
+							<th>最后登入时间</th>
+							<th>最后登入IP</th>
+							<th>最后登入设备</th>
 						</tr>
 						<c:forEach items="${user}" var="item" varStatus="status">
 							<tr>
@@ -81,9 +84,9 @@ function back(){
 								<td><c:out value = "${item.sex}" /></td>
 								<td><c:out value = "${item.age}" /></td>
 								<td><c:out value = "${item.rate_fat}" /></td>
-								<%-- 			<td><a href="${item.pictureurl}" target="_blank"><c:out value = "${item.avatar}" /></a></td> --%>	
-<%-- 								<td><input type="button" onclick="javascript:window.location.href='resources/event_edit/${item.id}'" value="编辑"></td>
-								<td><input type="button" onclick="delConfirm(${item.id});" value="删除"></td> --%>
+								<td><c:out value = "${item.last_login_time}" /></td>
+								<td><c:out value = "${item.last_login_ip}" /></td>
+								<td><c:out value = "${item.device_type}" /></td>
 							</tr>
 						</c:forEach>
 					</table>	

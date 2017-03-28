@@ -37,12 +37,6 @@ public class KnownController {
 		List<Subscribe> subscribe = subscribeService.findAllKnown();
 		List<Subscribe> known = new ArrayList<Subscribe>();
 
-		/*
-		 * Properties properties = new Properties();
-		 * properties.load(this.getClass().getClassLoader()
-		 * .getResourceAsStream("Webinfo.properties"));
-		 */
-
 		for (int i = 0; i < subscribe.size(); i++) {
 			// String picture_url = properties.getProperty("picture_url");
 			if (subscribe.get(i).getSubscribe_type() == 2) {

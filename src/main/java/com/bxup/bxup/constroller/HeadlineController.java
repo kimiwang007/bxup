@@ -31,6 +31,8 @@ static Logger log = Logger.getLogger(HeadlineController.class.getName());
 			if(subscribe.get(i).getSubscribe_type() == 0){
 				headline.add(subscribe.get(i));
 				mode.put("headline", headline);
+			} else if (subscribe.get(i).getSubscribe_type() == null){
+				return "failure";
 			}	
 		}
 

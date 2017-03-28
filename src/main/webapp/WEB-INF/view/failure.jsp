@@ -12,7 +12,7 @@
 </head>
 
 <body>
-<h2>Upload Failure</h2>
+<h2>不好，这里发生了一些错误</h2>
     <br><input type="button"  class="blue_btn" value="Back" onclick="javascript:window.location.href='./resources'"/>
 </body>
 

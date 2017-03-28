@@ -29,6 +29,48 @@ public class ShowDto {
 	
 	private String create_Time;
 	
+	private String pictureurl1;
+	
+	private String pictureurl2;
+	
+	private String pictureurl3;
+	
+	private String pictureurl4;
+
+
+
+
+	public String getPictureurl1() {
+		return pictureurl1;
+	}
+
+	public void setPictureurl1(String pictureurl1) {
+		this.pictureurl1 = pictureurl1;
+	}
+
+	public String getPictureurl2() {
+		return pictureurl2;
+	}
+
+	public void setPictureurl2(String pictureurl2) {
+		this.pictureurl2 = pictureurl2;
+	}
+
+	public String getPictureurl3() {
+		return pictureurl3;
+	}
+
+	public void setPictureurl3(String pictureurl3) {
+		this.pictureurl3 = pictureurl3;
+	}
+
+	public String getPictureurl4() {
+		return pictureurl4;
+	}
+
+	public void setPictureurl4(String pictureurl4) {
+		this.pictureurl4 = pictureurl4;
+	}
 
 	public String getCreate_Time() {
 		return create_Time;

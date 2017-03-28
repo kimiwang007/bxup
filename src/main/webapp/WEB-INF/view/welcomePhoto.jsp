@@ -28,7 +28,7 @@
 	</c:if>
 	<br>
 	<input type="button" class="blue_btn" value="变更闪屏"
-		onclick="javascript:window.location.href='./changeWelcomePhoto'" />
+		onclick="javascript:window.location.href='./welcomeimg/changeWelcomePhoto'" />
 	<input type="button" value="返回" onclick="back();" />
 	<table border="1">
 		<tr>
@@ -47,12 +47,12 @@
 				<td><c:out value="${item.start_date}" /></td>
 				<td><c:out value="${item.end_date}" /></td>
 				<td><c:out value="${item.create_date}" /></td>
-				<td><c:out value="${item.iphone4_img}" /></td>
-				<td><c:out value="${item.iphone5_img}" /></td>
-				<td><c:out value="${item.iphone6_img}" /></td>
-				<td><c:out value="${item.iphone6p_img}" /></td>
-				<td><c:out value="${item.iphone7_img}" /></td>
-				<td><c:out value="${item.iphone7p_img}" /></td>
+				<td><a href="${item.iphone4url}" target="_blank"><c:out value="${item.iphone4_img}" /></td>
+				<td><a href="${item.iphone5url}" target="_blank"><c:out value="${item.iphone5_img}" /></td>
+				<td><a href="${item.iphone6url}" target="_blank"><c:out value="${item.iphone6_img}" /></td>
+				<td><a href="${item.iphone6purl}" target="_blank"><c:out value="${item.iphone6p_img}" /></td>
+				<td><a href="${item.iphone7url}" target="_blank"><c:out value="${item.iphone7_img}" /></td>
+				<td><a href="${item.iphone7purl}" target="_blank"><c:out value="${item.iphone7p_img}" /></td>
 			</tr>
 		</c:forEach>
 	</table>

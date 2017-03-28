@@ -60,52 +60,49 @@
 <body>
 	<h2>闪屏变更</h2>
 	<form enctype="multipart/form-data" action="welcomePhotoAdd" method="post">
-
 		<table>
 			<tr>
 				<td style="width: 70px">开始日期</td>
-				<td style="width: 220px"><input type="text" name="startDate"
-					id="startDate" size="35" maxlength="10" value="${startDate}"
-					onfocus="this.style.imeMode='disabled'" /></td>
+				<td style="width: 220px"><input type="text" name="start_date"
+					id="start_date" size="35" maxlength="10" value="${start_date}"/></td>
 				<td>*请按照 yyyymmdd 格式输入</td>
 			</tr>
 			<tr>
 				<td>结束日期</td>
-				<td><input type="text" name="endDate" id="endDate" size="35"
-					maxlength="10" value="${endDate}"
-					onfocus="this.style.imeMode='disabled'"/></td>
+				<td><input type="text" name="end_date" id="end_date" size="35"
+					maxlength="10" value="${end_date}"/></td>
 				<td>*请按照 yyyymmdd 格式输入</td>
 			</tr>
-<!-- 			<tr>
+ 			<tr>
 				<td>iphone4闪屏图片</td>
-				<td colspan="2"><input type="file" id="iphone4Img" name="iphone4Img" 
+				<td colspan="2"><input type="file" id="iphone4" name="iphone4" 
 				    size="35"></td>
 			</tr>
 			<tr>
 				<td>iphone5闪屏图片</td>
-				<td colspan="2"><input type="file" id="iphone5Img" name="iphone5Img"
+				<td colspan="2"><input type="file" id="iphone5" name="iphone5"
 					size="35"></td>
 			</tr>
 			<tr>
 				<td>iphone6闪屏图片</td>
-				<td colspan="2"><input type="file" id="iphone6Img" name="iphone6Img"
+				<td colspan="2"><input type="file" id="iphone6" name="iphone6"
 					size="35"></td>
 			</tr>
 			<tr>
 				<td>iphone6p闪屏图片</td>
-				<td colspan="2"><input type="file" id="iphone6pImg" name="iphone6pImg" 
+				<td colspan="2"><input type="file" id="iphone6p" name="iphone6p" 
 				    size="35"></td>
 			</tr>
 			<tr>
 				<td>iphone7闪屏图片</td>
-				<td colspan="2"><input type="file" id="iphone7Img" name="iphone7Img" 
+				<td colspan="2"><input type="file" id="iphone7" name="iphone7" 
 				    size="35"></td>
 			</tr>
 			<tr>
 				<td>iphone7p闪屏图片</td>
-				<td colspan="2"><input type="file" id="iphone7pImg" name="iphone7pImg" 
+				<td colspan="2"><input type="file" id="iphone7p" name="iphone7p" 
 				    size="35"></td>
-			</tr> -->
+			</tr>
 		</table>
 
 		<br> <input type="submit" value="上传"

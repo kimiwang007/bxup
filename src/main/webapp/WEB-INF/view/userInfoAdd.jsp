@@ -73,7 +73,7 @@ function checkInput(){
 
 function back(){
 	if(window.confirm('是否返回用户列表 ?')){
-		javascript:window.location.href='coach'
+		javascript:window.location.href='user'
      }
 }
 
@@ -81,7 +81,7 @@ function back(){
 
 </head>
 <body>
-	<h2>教练信息</h2>
+	<h2>用户信息</h2>
 	<form enctype="multipart/form-data" action="userAdd" method="post">
 
 			<table>

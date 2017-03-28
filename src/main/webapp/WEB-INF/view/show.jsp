@@ -70,10 +70,10 @@ function back(){
 							<tr>
 								<td><c:out value = "${status.count}" /></td>
 								<td><c:out value = "${item.description}" /></td>
-								<td><c:out value = "${item.img1}" /></td>	
-								<td><c:out value = "${item.img2}" /></td>	
-								<td><c:out value = "${item.img3}" /></td>	
-								<td><c:out value = "${item.img4}" /></td>	
+								<td><a href="${item.pictureurl1}" target="_blank"><c:out value = "${item.img1}" />
+								<td><a href="${item.pictureurl2}" target="_blank"><c:out value = "${item.img2}" />		
+								<td><a href="${item.pictureurl3}" target="_blank"><c:out value = "${item.img3}" />	
+						        <td><a href="${item.pictureurl4}" target="_blank"><c:out value = "${item.img4}" />		
 								<td><c:out value = "${item.create_Time}" /></td>
 								<td><input type="button" onclick="delConfirm(${item.id});" value="删除"></td>																										
 							</tr>																																														
