@@ -38,7 +38,6 @@ import com.bxup.bxup.model.Show;
 import com.bxup.bxup.model.ShowPhotoRel;
 import com.bxup.bxup.model.Subscribe;
 import com.bxup.bxup.model.User;
-import com.bxup.bxup.model.WelcomeIMG;
 import com.bxup.bxup.service.CoachService;
 import com.bxup.bxup.service.EventInsertService;
 import com.bxup.bxup.service.FeedBackService;
@@ -46,7 +45,6 @@ import com.bxup.bxup.service.GymService;
 import com.bxup.bxup.service.ShowService;
 import com.bxup.bxup.service.SubscribeService;
 import com.bxup.bxup.service.UserService;
-import com.bxup.bxup.service.WelcomeImgService;
 
 @Controller
 public class RestController {
@@ -55,6 +53,7 @@ public class RestController {
 
 	@Autowired(required = false)
 	private EventInsertService eventInsertService;
+
 	// 20170303 Baojun Add
 	@Autowired(required = false)
 	private CoachService coachInfoService;
@@ -73,8 +72,6 @@ public class RestController {
 	// 20170319 Baojun Add
 	@Autowired(required = false)
 	private SubscribeService subscribeService;
-	@Autowired
-	private WelcomeImgService welcomeImgService;
 
 	@RequestMapping(value = "/eventAdd", method = RequestMethod.GET)
 	public String eventAdd() {
@@ -83,31 +80,13 @@ public class RestController {
 		return "eventAdd";
 	}
 
-	// 20170303 Baojun ADD
-	@RequestMapping(value = "/coachInfoAdd", method = RequestMethod.GET)
-	public String coachInfoAdd(Map<String, Object> mode) throws SQLException {
-		log.info("coachInfoAdd called");
-
-//		List<Gym> gym = gymInfoService.findAll();
-//		/*
-//		 * List<String> gymnamelist = new ArrayList<String>();
-//		 * 
-//		 * for(int i=0;i<gym.size();i++){
-//		 * 
-//		 * gymnamelist.add(gym.get(i).getName()); }
-//		 */
-//		mode.put("coachInfoAdd", gym);
-
-		return "coachInfoAdd";
-	}
-
 	// 20170304 Baojun ADD
 	@RequestMapping(value = "/feedback", method = RequestMethod.GET)
 	public String feedback(Map<String, Object> mode) throws SQLException {
 		log.info("feedback called");
 		List<FeedBack> feedback = feedBackService.findAll();
 		User user = new User();
-
+		
 		for (int i = 0; i < feedback.size(); i++) {
 
 			int userid = feedback.get(i).getUser_id();
@@ -134,7 +113,7 @@ public class RestController {
 	public String showInfoAdd(Map<String, Object> mode) throws SQLException {
 		log.info("showInfoAdd called");
 
-		List<User> user = userService.findPhoneyAll();
+		List<User> user = userService.findAll();
 		mode.put("showInfoAdd", user);
 		return "showInfoAdd";
 	}
@@ -145,14 +124,6 @@ public class RestController {
 		log.info("subscribeAdd called");
 
 		return "subscribeInfoAdd";
-	}
-
-	// 20170327 Baojun ADD
-	@RequestMapping(value = "/changeWelcomePhoto", method = RequestMethod.GET)
-	public String changeWelcomePhoto(Map<String, Object> mode) throws SQLException {
-		log.info("changeWelcomePhoto called");
-
-		return "changeWelcomePhoto";
 	}
 
 	@RequestMapping(value = "/eventAdd", method = RequestMethod.POST)
@@ -337,7 +308,7 @@ public class RestController {
 				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
 					event.setIphone5_img(picturename);
 					String path = picturepositiontmp + picturename;
-					file.transferTo(new File(path));
+				    file.transferTo(new File(path));
 				}
 			}
 		}
@@ -350,48 +321,7 @@ public class RestController {
 			return CommonConstant.FORWARD_FAILURE;
 		}
 	}
-
-	// 20170303 Baojun ADD
-	@RequestMapping(value = "/maincoachInfoAdd", method = RequestMethod.POST)
-	public String maincoachInfoAdd(Model model, HttpServletRequest request, HttpServletResponse response,
-			Coach coachInfoForm) throws IllegalStateException, IOException {
-
-		CoachPhoto cachPhotoForm = new CoachPhoto();
-		log.info("maincoachInfoAdd called");
-
-		Date d = new Date();
-		Long create_time = d.getTime();
-		coachInfoForm.setCreate_time(create_time);
-
-		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-				request.getSession().getServletContext());
-
-		Properties properties = new Properties();
-		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
-		String picturepositiontmp = properties.getProperty("coachpictureposition");
-		if (multipartResolver.isMultipart(request)) {
-			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-			Iterator<?> iter = multiRequest.getFileNames();
-			while (iter.hasNext()) {
-				MultipartFile file = multiRequest.getFile(iter.next().toString());
-				String picturename = file.getOriginalFilename();
-				coachInfoForm.setAvatar(picturename);
-				cachPhotoForm.setPhoto(picturename);
-				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
-					String path = picturepositiontmp + picturename;
-					file.transferTo(new File(path));
-				}
-			}
-		}
-		String sucflg = coachInfoService.insertCoachInfo(coachInfoForm);
-		String ucfflg = coachInfoService.insertCoachPhoto(cachPhotoForm);
-		if (sucflg.equals(CommonConstant.FORWARD_SUCCESS) && ucfflg.equals(CommonConstant.FORWARD_SUCCESS)) {
-			log.info("insertCoachInfo and insertCoachPhoto success!");
-			return "redirect:/coach";
-		} else {
-			return CommonConstant.FORWARD_FAILURE;
-		}
-	}
+	
 	// 20170314 Baojun Add
 	@RequestMapping(value = "/userAdd", method = RequestMethod.POST)
 	public String userAdd(Model model, HttpServletRequest request, HttpServletResponse response, User user)
@@ -440,7 +370,7 @@ public class RestController {
 				filenameList.add(picturename);
 				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
 					String path = picturepositiontmp + picturename;
-					file.transferTo(new File(path));
+				    file.transferTo(new File(path));
 				}
 			}
 		}
@@ -470,6 +400,7 @@ public class RestController {
 		}
 	}
 
+
 	// 20170319 Baojun Add
 	@RequestMapping(value = "/subscribeInfoAdd", method = RequestMethod.POST)
 	public String subscribeInfoAdd(Model model, HttpServletRequest request, HttpServletResponse response,
@@ -486,6 +417,7 @@ public class RestController {
 		if (multipartResolver.isMultipart(request)) {
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			Iterator<?> iter = multiRequest.getFileNames();
+
 			while (iter.hasNext()) {
 
 				MultipartFile file = multiRequest.getFile(iter.next().toString());
@@ -493,10 +425,11 @@ public class RestController {
 				subscribeForm.setImg(picturename);
 				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
 					String path = picturepositiontmp + picturename;
-					file.transferTo(new File(path));
+				    file.transferTo(new File(path));
 				}
 			}
 		}
+
 		String sucflg = subscribeService.insertSubscribeInfo(subscribeForm);
 		if (sucflg.equals(CommonConstant.FORWARD_SUCCESS) && subscribeForm.getSubscribe_type() == 0) {
 			log.info("insertSubscribeInfo Success!");
@@ -512,65 +445,4 @@ public class RestController {
 		}
 	}
 
-	@RequestMapping(value = "/welcomePhotoAdd", method = RequestMethod.GET)
-	public String WelcomePhotoAdd( HttpServletRequest request, HttpServletResponse response,
-			WelcomeIMG welcomePhoto) throws IllegalStateException, IOException {/*
-		log.info("welcomePhotoAdd called");
-		String suuflg = welcomeImgService.updateWelcomePhoto(welcomePhoto);
-		Date d = new Date();
-		Long create_date = d.getTime();
-		// welcomePhoto.setCreate_date(create_date);
-		HashMap<String, String> filename = new HashMap<String, String>();
-		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-				request.getSession().getServletContext());
-		Properties properties = new Properties();
-		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
-		String picturepositiontmp = properties.getProperty("gympictureposition");
-		if (multipartResolver.isMultipart(request)) {
-			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-			Iterator<?> iter = multiRequest.getFileNames();
-			while (iter.hasNext()) {
-				StringBuilder filenamesave = new StringBuilder();
-				MultipartFile file = multiRequest.getFile(iter.next().toString());
-				String picturename = file.getOriginalFilename();
-				int position = picturename.indexOf(CommonConstant.POINT);
-				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
-					filenamesave.append(file.getName());
-					filenamesave.append(CommonConstant.UNDERLINE);
-					filenamesave.append(picturename.substring(0, position));
-					filenamesave.append(picturename.substring(position));
-					//
-					filename.put(file.getName(), filenamesave.toString());
-					String path = picturepositiontmp + filenamesave.toString();
-					try {
-						file.transferTo(new File(path));
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				// welcomePhoto.setIphone4_img(filename.get(CommonConstant.IPHONE4IMGNAME));
-				// welcomePhoto.setIphone5_img(filename.get(CommonConstant.IPHONE5IMGNAME));
-				// welcomePhoto.setIphone6_img(filename.get(CommonConstant.IPHONE6IMGNAME));
-				// welcomePhoto.setIphone6p_img(filename.get(CommonConstant.IPHONE6PIMGNAME));
-				// welcomePhoto.setIphone7_img(filename.get(CommonConstant.IPHONE6PIMGNAME));
-				// welcomePhoto.setIphone7p_img(filename.get(CommonConstant.IPHONE6PIMGNAME));
-			}
-		}
-
-		String sucflg = welcomeImgService.insertWelcomePhoto(welcomePhoto);
-		if (sucflg.equals(CommonConstant.FORWARD_SUCCESS)) {
-			log.info("changeWelcomePhoto success!");
-			return "redirect:/welcomeimg";
-		} else {
-			return CommonConstant.FORWARD_FAILURE;
-		}
-	*/
-	return CommonConstant.FORWARD_FAILURE;
-   }
-	
-	
 }

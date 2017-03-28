@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import com.bxup.bxup.common.constant.CommonConstant;
 import com.bxup.bxup.common.constant.ImgtypeEnum;
 import com.bxup.bxup.constroller.RestController;
+import com.bxup.bxup.controller.client.dto.CoachDto;
 import com.bxup.bxup.controller.client.dto.GymDto;
 import com.bxup.bxup.controller.client.dto.ShowDto;
 import com.bxup.bxup.model.Coach;
@@ -283,9 +284,9 @@ public class LoginDao {
 	public static String AddT_coach(Coach coachInfoForm) {
 		log.info("SqlAddT_coach Start.");
 		String sucflg = null;
-
+		Object generatedKey = null;
 		try {
-			sqlMap.insert("insertCoachInfoForm", coachInfoForm);
+			generatedKey = sqlMap.insert("insertCoachInfoForm", coachInfoForm);
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -293,7 +294,7 @@ public class LoginDao {
 			sucflg = CommonConstant.FORWARD_FAILURE;
 			return sucflg;
 		}
-		sucflg = CommonConstant.FORWARD_SUCCESS;
+		sucflg = generatedKey.toString();
 		return sucflg;
 	}
 
@@ -389,10 +390,29 @@ public class LoginDao {
 		return gym;
 	}
 
-	// 20170308 Baojun Add
-	public static List<Coach> SelectAllCoach() throws SQLException {
+	// 20170328 wwb Add
+	public static List<Gym> SelectAllGymName() throws SQLException {
 		log.info("SqlSelectAllEvent Start.");
-		List<Coach> coach = null;
+		List<Gym> gym = null;
+		String sucflg = null;
+		try {
+			gym = sqlMap.queryForList("selectAllGymName", gym);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		sucflg = CommonConstant.FORWARD_SUCCESS;
+
+		log.info("SqlselectAllGym End.");
+		return gym;
+	}
+
+	// 20170308 Baojun Add
+	public static List<CoachDto> SelectAllCoach() throws SQLException {
+		log.info("SqlSelectAllEvent Start.");
+		List<CoachDto> coach = null;
 		String sucflg = null;
 		try {
 			coach = sqlMap.queryForList("selectAllCoach", coach);
@@ -464,7 +484,7 @@ public class LoginDao {
 		log.info("SQLSelectPhoneyUser End.");
 		return user;
 	}
-		
+
 	// 20170314 Baojun ADD
 	public static String AddT_user(User userForm) {
 		log.info("SqlAddT_user Start.");

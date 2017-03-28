@@ -21,7 +21,7 @@
 		</c:otherwise>
 	</c:choose>
 	<form enctype="multipart/form-data" action="feedImgSave" method="post">
-		<input type="hidden" value="${setType}" name="setType">
+		<input type="hidden" value="${setType}" name="setType" id="setType">
 		<c:forEach items="${items}" var="item" varStatus="status">
 			<table border="0">
 				<tr>
@@ -79,9 +79,16 @@ function checkInput(){
 }
 
 function back(){
-	if(window.confirm('是否返回健身房列表 ?')){
-		javascript:window.location.href='/bxadmin/known'
-    }
+	if($('#setType').val() == "known"){
+		if(window.confirm('是否返回知道列表 ?')){
+			javascript:window.location.href='/bxadmin/known'
+	    }
+	} else {		
+		if(window.confirm('是否返回精选列表 ?')){
+			javascript:window.location.href='/bxadmin/choose'
+	    }
+	}
+	
 }
 </SCRIPT>
 </body>

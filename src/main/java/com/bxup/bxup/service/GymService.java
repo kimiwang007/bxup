@@ -12,6 +12,7 @@ public interface GymService {
 	String insertGymInfo(Gym gymInfoForm);
 	String insertGymPhoto(GymPhoto gymPhotoForm);
 	List<GymDto> findAll() throws SQLException;
+	List<Gym> findAllGymName() throws SQLException;
 	Object findgymById(int gymid);
 
 }

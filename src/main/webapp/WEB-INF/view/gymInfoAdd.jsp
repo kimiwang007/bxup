@@ -15,11 +15,18 @@
 
 function clearAll(){
 	document.getElementById("name").value = "";
-	document.getElementById("gympicture").value = "";
 	document.getElementById("profile").value = "";
+	document.getElementById("province").value = "";
+	document.getElementById("city").value = "";
 	document.getElementById("address").value = "";
 	document.getElementById("tel").value = "";
 	document.getElementById("tag").value = "";
+	document.getElementById("hot").value = "";
+	document.getElementById("gympicture1").value = "";
+	document.getElementById("gympicture2").value = "";
+	document.getElementById("gympicture3").value = "";
+	document.getElementById("gympicture4").value = "";
+	document.getElementById("gympicture5").value = "";
 }
 
 function onSubmit(cmd){
@@ -121,8 +128,8 @@ function back(){
 				</tr>
 				<tr>
 					<td style="width: 70px">标签</td>
-					<td style="width: 220px"><input type="text" name="tag"
-						id="tag" size="35" maxlength="200" value="${tag}" /></td>
+					<td style="width: 220px"><font size="2" color="red">(*多标签记入时，请以','号分隔)</font>
+					<input type="text" name="tag" id="tag" size="35" maxlength="200" value="${tag}" /></td>
 				</tr>
 				<tr>
 					<td style="width: 70px">热度</td>

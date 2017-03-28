@@ -1,12 +1,16 @@
 package com.bxup.bxup.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Coach {
 	
 	private int id;
 	
-	private int user_id; 
+	private String avatar;
 	
 	private int gym_id;
+	
+	private String name;	
 	
 	private long create_time;
 	
@@ -18,15 +22,23 @@ public class Coach {
 	
 	private int age;  
 	
-	private String avatar;
-	
-	private String name;
-	
 	private String genius;  
 	
 	private String honor;  
 	
 	private String profile;
+	
+	private int user_id; 
+	
+	private String province;
+	
+	private String city;
+	
+	private String address;
+	
+	private String tag;
+	
+	private int hot;
 	
 	private String gym_name;
 	
@@ -36,15 +48,17 @@ public class Coach {
 	
 	private String pictureurl;
 	
-	private String tag;
+	private MultipartFile photo;
 	
-	private int hot;
+	private MultipartFile picture1;
 	
-	private String province;
+	private MultipartFile picture2;
 	
-	private String city;
+	private MultipartFile picture3;
 	
+	private MultipartFile picture4;
 	
+	private MultipartFile picture5;
 	
 	public int getHot() {
 		return hot;
@@ -171,6 +185,48 @@ public class Coach {
 	}
 	public void setProfile(String profile) {
 		this.profile = profile;
+	}
+	public MultipartFile getPhoto() {
+		return photo;
+	}
+	public void setPhoto(MultipartFile photo) {
+		this.photo = photo;
+	}
+	public MultipartFile getPicture1() {
+		return picture1;
+	}
+	public void setPicture1(MultipartFile picture1) {
+		this.picture1 = picture1;
+	}
+	public MultipartFile getPicture2() {
+		return picture2;
+	}
+	public void setPicture2(MultipartFile picture2) {
+		this.picture2 = picture2;
+	}
+	public MultipartFile getPicture3() {
+		return picture3;
+	}
+	public void setPicture3(MultipartFile picture3) {
+		this.picture3 = picture3;
+	}
+	public MultipartFile getPicture4() {
+		return picture4;
+	}
+	public void setPicture4(MultipartFile picture4) {
+		this.picture4 = picture4;
+	}
+	public MultipartFile getPicture5() {
+		return picture5;
+	}
+	public void setPicture5(MultipartFile picture5) {
+		this.picture5 = picture5;
+	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
 	}
 	
 }

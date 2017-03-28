@@ -113,7 +113,7 @@ public class GymController {
 		
 		Properties properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
-		String picturepositiontmp = properties.getProperty("gympictureposition");
+		String picturepositiontmp = properties.getProperty("picture_url");
 		
 		StringBuilder filenamesave = new StringBuilder();
 		int position = 0;

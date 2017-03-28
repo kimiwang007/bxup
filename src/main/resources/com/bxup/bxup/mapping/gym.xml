@@ -27,6 +27,10 @@
 		from t_gym g left join t_gym_photo_rel rel on g.id = rel.gym_id
 		where g.delete_status = 1 order by g.id
 	</select>
+	<select id="selectAllGymName" resultClass="Gym">
+		select * from t_gym 
+		where delete_status = 1 order by id
+	</select>
     <select id="selectAllGymnameById" resultClass="Gym">    
              select name from 
              t_gym where delete_status=0 and id=#gymid#

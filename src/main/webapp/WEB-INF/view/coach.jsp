@@ -48,7 +48,7 @@ function back(){
 		<p>${message}</p>
 	</div>
 </c:if>
-<br><input type="button"  class="blue_btn" value="新建教练" onclick="javascript:window.location.href='./coachInfoAdd'"/>
+<br><input type="button"  class="blue_btn" value="新建教练" onclick="javascript:window.location.href='./coach/coachInfo'"/>
 	<input type="button" value="返回" onclick="back();"/>	
 	<table>
 		<tr>
@@ -63,13 +63,18 @@ function back(){
 							<th>年龄</th>
 							<th>省</th>
 							<th>市</th>
+							<th>地址</th>
 							<th>档案</th>
 							<th>荣誉</th>
 							<th>就职健身房</th>
 							<th>认证</th>
 							<th>标签</th>
 							<th>热度</th>
-
+							<th>图片1</th>
+							<th>图片2</th>
+							<th>图片3</th>
+							<th>图片4</th>
+							<th>图片5</th>
 						</tr>
 						<c:forEach items="${coach}" var="item" varStatus="status">
 							<tr>
@@ -80,12 +85,18 @@ function back(){
 								<td><c:out value = "${item.age}" /></td>
 								<td><c:out value = "${item.province}" /></td>
 								<td><c:out value = "${item.city}" /></td>
+								<td><c:out value = "${item.address}" /></td>
 								<td><c:out value = "${item.profile}" /></td>							
 								<td><c:out value = "${item.honor}" /></td>
 								<td><c:out value = "${item.gym_name}" /></td>
 								<td><c:out value = "${item.approvedfg}" /></td>
 								<td><c:out value = "${item.tag}" /></td>
 								<td><c:out value = "${item.hot}" /></td>
+								<td><a href="${item.picture1}" target="_blank"><c:out value = "${item.pictureName1}" /></a></td>
+								<td><a href="${item.picture2}" target="_blank"><c:out value = "${item.pictureName2}" /></a></td>
+								<td><a href="${item.picture3}" target="_blank"><c:out value = "${item.pictureName3}" /></a></td>
+								<td><a href="${item.picture4}" target="_blank"><c:out value = "${item.pictureName4}" /></a></td>
+								<td><a href="${item.picture5}" target="_blank"><c:out value = "${item.pictureName5}" /></a></td>
 							</tr>
 						</c:forEach>
 					</table>	

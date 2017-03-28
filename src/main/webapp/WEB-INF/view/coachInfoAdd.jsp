@@ -17,10 +17,18 @@ function clearAll(){
 	document.getElementById("name").value = "";
 	document.getElementById("photo").value = "";
 	document.getElementById("age").value = "";
+	document.getElementById("province").value = "";
+	document.getElementById("city").value = "";
+	document.getElementById("address").value = "";
 	document.getElementById("profile").value = "";
 	document.getElementById("honor").value = "";
-	document.getElementById("gym_name").value = "";
-	document.getElementById("tab").value = "";
+	document.getElementById("tag").value = "";
+	document.getElementById("hot").value = "";
+	document.getElementById("picture1").value = "";
+	document.getElementById("picture2").value = "";
+	document.getElementById("picture3").value = "";
+	document.getElementById("picture4").value = "";
+	document.getElementById("picture5").value = "";
 }
 
 function onSubmit(cmd){
@@ -83,7 +91,7 @@ function checkInput(){
 
 function back(){
 	if(window.confirm('是否返回教练员列表 ?')){
-		javascript:window.location.href='coach'
+		javascript:window.location.href='../coach'
      }
 }
 
@@ -92,7 +100,7 @@ function back(){
 </head>
 <body>
 	<h2>教练信息</h2>
-	<form enctype="multipart/form-data" action="maincoachInfoAdd" method="post">
+	<form enctype="multipart/form-data" action="coachInfoAdd" method="post">
 
 			<table>
 				<tr>
@@ -126,6 +134,11 @@ function back(){
 						id="city" size="35" maxlength="200" value="${city}" /></td>
 				</tr>
 				<tr>
+					<td style="width: 70px">地址</td>
+					<td style="width: 220px"><input type="text" name="address"
+						id="address" size="35" maxlength="200" value="${address}" /></td>
+				</tr>
+				<tr>
 					<td style="width: 70px">档案</td>
 					<td style="width: 220px"><input type="text" name="profile"
 						id="profile" size="35" value="${profile}"/></td>
@@ -139,11 +152,10 @@ function back(){
 					<td style="width: 75px">就职健身房</td>
 					<td style="width: 220px">
 					<select name="gym_id">
-					<c:forEach var="gym" items="${coachInfoAdd}" varStatus="status">
+					<c:forEach var="gym" items="${gym}" varStatus="status">
 						<option value="${gym.id}">${gym.name}</option>
 					</c:forEach>
 					</select>
-					<input type="hidden" name="gym_id" value="${gym.id}"/>
 					</td>
 				</tr>
 				<tr>
@@ -153,15 +165,39 @@ function back(){
 				</tr>
 				<tr>
 					<td style="width: 70px">标签</td>
-					<td style="width: 220px"><input type="text" name="tag"
-						id="tag" size="35" maxlength="200" value="${tag}" /></td>
+					<td style="width: 220px"><font size="2" color="red">(*多标签记入时，请以','号分隔)</font>
+						<input type="text" name="tag" id="tag" size="35" maxlength="200" value="${tag}" /></td>
 				</tr>
 				<tr>
 					<td style="width: 70px">热度</td>
 					<td style="width: 220px"><input type="text" name="hot"
 						id="hot" size="35" maxlength="4" value="${hot}" /></td>
 				</tr>
-				
+				<tr>
+					<td>图片1</td>
+					<td colspan="2"><input type="file" id="picture1" name="picture1" size="35" />
+					</td>
+				</tr>
+				<tr>
+					<td>图片2</td>
+					<td colspan="2"><input type="file" id="picture2" name="picture2" size="35" />
+					</td>
+				</tr>
+				<tr>
+					<td>图片3</td>
+					<td colspan="2"><input type="file" id="picture3" name="picture3" size="35" />
+					</td>
+				</tr>
+				<tr>
+					<td>图片4</td>
+					<td colspan="2"><input type="file" id="picture4" name="picture4" size="35" />
+					</td>
+				</tr>
+				<tr>
+					<td>图片5</td>
+					<td colspan="2"><input type="file" id="picture5" name="picture5" size="35" />
+					</td>
+				</tr>
 			</table>
 
 		<br> <input type="submit" value="上传"

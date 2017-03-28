@@ -5,15 +5,42 @@
 <sqlMap namespace="fouthSpace">
 	<typeAlias alias="Coach" type="com.bxup.bxup.model.Coach" />
 	<!-- select -->
-	<select id="selectAllCoach" resultClass="Coach">    
-             select * from 
-             t_coach where delete_status=0 ORDER BY create_time DESC
+	<resultMap id="DtoResultMap" class="com.bxup.bxup.controller.client.dto.CoachDto">
+		<result column="id" property="id" jdbcType="BIGINT" />
+		<result column="avatar" property="avatar" jdbcType="VARCHAR" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="gym_name" property="gym_name" jdbcType="VARCHAR" />		
+		<result column="create_time" property="create_time" jdbcType="BIGINT" />
+		<result column="approved" property="approved" jdbcType="BIGINT" />
+		<result column="gendar" property="gendar" jdbcType="BIGINT" />
+		<result column="age" property="age" jdbcType="BIGINT" />
+		<result column="genius" property="genius" jdbcType="VARCHAR" />
+		<result column="honor" property="honor" jdbcType="VARCHAR" />
+		<result column="profile" property="profile" jdbcType="VARCHAR" />
+		<result column="user_id" property="user_id" jdbcType="BIGINT" />		
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="city" property="city" jdbcType="VARCHAR" />
+		<result column="tag" property="tag" jdbcType="VARCHAR" />
+		<result column="hot" property="hot" jdbcType="BIGINT" />
+		<result column="photo" property="photo" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- select -->
+	<select id="selectAllCoach" resultMap="DtoResultMap">
+		select c.id id,c.name,c.avatar,g.name gym_name,c.create_time,c.approved,c.gendar,c.age,
+		c.genius,c.honor,c.profile,c.user_id,c.province,c.address,c.city,c.tag,c.hot,rel.photo
+		from t_coach c left join t_coach_photo_rel rel on c.id = rel.coach_id
+		left join t_gym g on c.gym_id = g.id
+		where c.delete_status = 1 order by c.id DESC
 	</select>
 	<!-- insert -->
 	<insert id="insertCoachInfoForm" parameterClass="Coach">
 		insert into
 		t_coach(avatar,gym_id,name,create_time,approved,delete_status,gendar,age,province,city,genius,honor,profile,user_id,tag,hot)
 		values(#avatar#,#gym_id#,#name#,#create_time#,#approved#,#delete_status#,#gendar#,#age#,#province#,#city#,#genius#,#honor#,#profile#,#user_id#,#tag#,#hot#)
+		<selectKey resultClass="int" keyProperty="id" >     
+			select LAST_INSERT_ID() as value     
+		</selectKey>
 	</insert>
 	<!-- delete -->
 	<delete id="deleteCoachInfoForm" parameterClass="Coach">
