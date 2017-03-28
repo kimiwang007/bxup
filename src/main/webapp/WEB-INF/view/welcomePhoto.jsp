@@ -14,7 +14,7 @@
 <SCRIPT Language="JavaScript">
 	function back() {
 		if (window.confirm('是否返回导航画面 ?')) {
-			javascript: window.location.href = '/BXAdmin'
+			javascript: window.location.href = '/bxadmin'
 		}
 	}
 </script>

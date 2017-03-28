@@ -80,7 +80,7 @@ function checkInput(){
 
 function back(){
 	if(window.confirm('是否返回健身房列表 ?')){
-		javascript:window.location.href='/BXAdmin/known'
+		javascript:window.location.href='/bxadmin/known'
     }
 }
 </SCRIPT>

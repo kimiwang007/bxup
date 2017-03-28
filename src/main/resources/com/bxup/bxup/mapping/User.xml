@@ -9,7 +9,10 @@
              select * from 
              t_user where user_id=#user_id#
 	</select>
-	<select id="selectAllUser" resultClass="UserForm">    
+	<select id="selectPhoneyUser" resultClass="UserForm">    
+             select * from t_user where platform_id=999999999
+	</select>
+	<select id="selectAllUser" resultClass="UserForm">
              select * from t_user
 	</select>
 	<!-- insert -->

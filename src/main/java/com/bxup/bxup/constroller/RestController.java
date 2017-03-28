@@ -134,7 +134,7 @@ public class RestController {
 	public String showInfoAdd(Map<String, Object> mode) throws SQLException {
 		log.info("showInfoAdd called");
 
-		List<User> user = userService.findAll();
+		List<User> user = userService.findPhoneyAll();
 		mode.put("showInfoAdd", user);
 		return "showInfoAdd";
 	}
@@ -512,9 +512,9 @@ public class RestController {
 		}
 	}
 
-	@RequestMapping(value = "/welcomePhotoAdd", method = RequestMethod.POST)
+	@RequestMapping(value = "/welcomePhotoAdd", method = RequestMethod.GET)
 	public String WelcomePhotoAdd( HttpServletRequest request, HttpServletResponse response,
-			WelcomeIMG welcomePhoto) throws IllegalStateException, IOException {
+			WelcomeIMG welcomePhoto) throws IllegalStateException, IOException {/*
 		log.info("welcomePhotoAdd called");
 		String suuflg = welcomeImgService.updateWelcomePhoto(welcomePhoto);
 		Date d = new Date();
@@ -568,6 +568,9 @@ public class RestController {
 		} else {
 			return CommonConstant.FORWARD_FAILURE;
 		}
-	}
-
+	*/
+	return CommonConstant.FORWARD_FAILURE;
+   }
+	
+	
 }

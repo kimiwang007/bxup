@@ -23,6 +23,15 @@ public class UserServiceImpl implements UserService{
 		log.info("selectAllUserSuccess");
 			return user;
 	}
+	
+	@Override
+	public List<User> findPhoneyAll() throws SQLException {
+		Logger log = Logger.getLogger(ResourceController.class.getName());					
+		dao = new LoginDao();
+		List<User> user = LoginDao.SelectPhoneyUser();	
+		log.info("SelectPhoneyUser Success");
+			return user;
+	}
 		
 	@Override
 	public String insertUserInfo(User userForm){						
