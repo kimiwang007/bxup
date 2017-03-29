@@ -32,12 +32,15 @@ public class UserController {
 		log.info("showAllCoachInfo called");
 		List<User> user = userService.findAll();
 		for (int i = 0; i < user.size(); i++) {
-
-			if (user.get(i).getGender() == 1) {
-				user.get(i).setSex("男");
+			if (user.get(i).getGender() == null){
+				user.get(i).setSex("");
 			} else {
-				user.get(i).setSex("女");
-			}
+				if (user.get(i).getGender() == 1) {
+					user.get(i).setSex("男");
+				} else {
+					user.get(i).setSex("女");
+				}
+			}			
 		}
 
 		mode.put("user", user);

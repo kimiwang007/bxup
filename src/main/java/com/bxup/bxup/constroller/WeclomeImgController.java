@@ -38,14 +38,16 @@ public class WeclomeImgController {
 
 		
 		List<WelcomeIMG> welcomeIMG = welcomeImgService.findAll();
-		welcomeIMG.get(0).setIphone4url(picture_url + "/" + welcomeIMG.get(0).getIphone4_img());
-		welcomeIMG.get(0).setIphone5url(picture_url + "/" + welcomeIMG.get(0).getIphone5_img());
-		welcomeIMG.get(0).setIphone6url(picture_url + "/" + welcomeIMG.get(0).getIphone6_img());
-		welcomeIMG.get(0).setIphone6purl(picture_url + "/" + welcomeIMG.get(0).getIphone6p_img());
-		welcomeIMG.get(0).setIphone7url(picture_url + "/" + welcomeIMG.get(0).getIphone7_img());
-		welcomeIMG.get(0).setIphone7purl(picture_url + "/" + welcomeIMG.get(0).getIphone7p_img());
-		
-		welcomeIMG.get(0).setCreateDate(transferLongToDate("yyyy/MM/dd", welcomeIMG.get(0).getCreate_date()));
+		if(welcomeIMG.size() > 0){
+			welcomeIMG.get(0).setIphone4url(picture_url + "/" + welcomeIMG.get(0).getIphone4_img());
+			welcomeIMG.get(0).setIphone5url(picture_url + "/" + welcomeIMG.get(0).getIphone5_img());
+			welcomeIMG.get(0).setIphone6url(picture_url + "/" + welcomeIMG.get(0).getIphone6_img());
+			welcomeIMG.get(0).setIphone6purl(picture_url + "/" + welcomeIMG.get(0).getIphone6p_img());
+			welcomeIMG.get(0).setIphone7url(picture_url + "/" + welcomeIMG.get(0).getIphone7_img());
+			welcomeIMG.get(0).setIphone7purl(picture_url + "/" + welcomeIMG.get(0).getIphone7p_img());
+			
+			welcomeIMG.get(0).setCreateDate(transferLongToDate("yyyy/MM/dd", welcomeIMG.get(0).getCreate_date()));
+		}
 		mode.put("welcomePhoto", welcomeIMG);
 		return "welcomePhoto";
 	}
