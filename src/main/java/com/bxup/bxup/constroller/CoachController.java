@@ -130,7 +130,7 @@ public class CoachController {
 
 		Properties properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
-		String picturepositiontmp = properties.getProperty("picture_url");
+		String picturepositiontmp = properties.getProperty("coachpictureposition");
 		
 		StringBuilder filenamesave = new StringBuilder();
 		int position = 0;

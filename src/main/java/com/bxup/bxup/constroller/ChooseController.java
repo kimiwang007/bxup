@@ -86,7 +86,7 @@ static Logger log = Logger.getLogger(ChooseController.class.getName());
 		}
 		
 		//new feedImg set
-		String picturepositiontmp = properties.getProperty("picturepositiontmp");
+		String pictureposition = properties.getProperty("feedpictureposition");
 
 		for (int i = 0; i < feedImgData.getItmeID().size(); i++) {
 			subscribe = new Subscribe();
@@ -102,7 +102,7 @@ static Logger log = Logger.getLogger(ChooseController.class.getName());
 				filenamesave.append(picturename.substring(0, position));
 				filenamesave.append(imgtime);
 				filenamesave.append(picturename.substring(position));
-				String path = picturepositiontmp + filenamesave.toString();
+				String path = pictureposition + filenamesave.toString();
 				try {
 					file.transferTo(new File(path));
 					subscribe.setFeedImg(filenamesave.toString());
