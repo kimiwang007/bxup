@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.bxup.bxup.access.LoginDao;
 import com.bxup.bxup.constroller.ResourceController;
 import com.bxup.bxup.controller.client.dto.GymDto;
+import com.bxup.bxup.model.Event;
 import com.bxup.bxup.model.Gym;
 import com.bxup.bxup.model.GymPhoto;
 import com.bxup.bxup.service.GymService;
@@ -57,4 +58,12 @@ public class GymServiceImpl implements GymService {
 		return gym;
 	}
 
+	@Override
+	public boolean updateshelves(Gym gymUpdateForm) throws SQLException{
+		Logger log = Logger.getLogger(GymServiceImpl.class.getName());		
+		dao = new LoginDao();
+		boolean reval = dao.Updateshelves("updateGymshelves", gymUpdateForm);
+		log.info("updateshelves");
+		return reval;
+	}
 }

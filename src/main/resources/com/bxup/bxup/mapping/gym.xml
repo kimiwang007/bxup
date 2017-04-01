@@ -15,6 +15,7 @@
 		<result column="tel" property="tel" jdbcType="VARCHAR" />
 		<result column="user_id" property="user_id" jdbcType="BIGINT" />
 		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="shelves" property="shelves" jdbcType="BIGINT" />
 		<result column="city" property="city" jdbcType="VARCHAR" />
 		<result column="tag" property="tag" jdbcType="VARCHAR" />
 		<result column="hot" property="hot" jdbcType="BIGINT" />
@@ -23,7 +24,7 @@
 	<!-- select -->
 	<select id="selectAllGym" resultMap="DtoResultMap">
 		select g.id id,g.name,g.avatar,g.create_time,g.approved,g.profile,g.address,
-		g.tel,g.user_id,g.province,g.city,g.tag,g.hot,rel.photo
+		g.tel,g.user_id,g.province,g.shelves,g.city,g.tag,g.hot,rel.photo
 		from t_gym g left join t_gym_photo_rel rel on g.id = rel.gym_id
 		where g.delete_status = 1 order by g.id
 	</select>
@@ -49,4 +50,10 @@
 	<!-- delete -->
 	<delete id="deleteGymInfoForm" parameterClass="Gym">
 	</delete>
+	<!-- update -->
+	<update id="updateGymshelves" parameterClass="Gym"> 
+		update t_gym 
+		SET shelves= shelves * -1
+		WHERE id=#id# 
+	</update>
 </sqlMap> 

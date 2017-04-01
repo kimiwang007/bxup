@@ -32,6 +32,8 @@ public class GymDto {
 	
 	private String approvedfg;
 	
+	private Integer shelves;
+	
 	private String photo;
 	
 	private String gympicture1;
@@ -172,6 +174,15 @@ public class GymDto {
 
 	public void setApprovedfg(String approvedfg) {
 		this.approvedfg = approvedfg;
+	}
+
+	
+	public Integer getShelves() {
+		return shelves;
+	}
+
+	public void setShelves(Integer shelves) {
+		this.shelves = shelves;
 	}
 
 	public String getPhoto() {

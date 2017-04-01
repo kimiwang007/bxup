@@ -10,105 +10,91 @@
 <html>
 <head>
 <title>resources.jsp</title>
-<script type="text/javascript" src="./js/test.js"></script>
-<SCRIPT Language="JavaScript">
-function show(r){
-	if(r.value=='1' || r.value=='2'){
-		//alert(document.getElementById("c").border);
-		document.getElementById("c").style.display ='block';// 
-		document.getElementById("d").style.display ='none';
-		clearAll();
-	} else if(r.value=='3'){
-		//alert(document.getElementById("c").border);
-		document.getElementById("d").style.display ='block';//
-		document.getElementById("c").style.display ='none';
-		clearAll(); 
-	} else {
-		document.getElementById("c").style.display ='none';
-		document.getElementById("d").style.display ='none';
-	}
-}
-function delConfirm(itemId){	
-	if(window.confirm('Are you sure delete the event?')){
-		javascript:window.location.href='resources/event_delete/' + itemId
-    }
-}
-
+<link href="./resources/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="./resources/css/datatables.min.css" rel="stylesheet"/>
+<link href="./resources/css/rosy-standard.css" rel="stylesheet"/>
+<link href="./resources/css/datepicker.css" rel="stylesheet"/>
+<link href="./resources/css/bxadmin.css" rel="stylesheet"/>
+</head>	
+<body>
+<div class="container" style="width:100%;">
+	<div class="Toglle col-xs-12">
+		<h2>用户列表</h2>	
+	</div>
+   	<c:if test="${not empty message}">
+		<div role="alert" class="Toglle col-xs-12">
+			<p>${message}</p>
+		</div>
+	</c:if>        
+     <div class="col-xs-12">        
+      	<input type="button"  class="btn btn-primary" value="新建用户" onclick="javascript:window.location.href='./userInfoAdd'"/>
+      	<input type="button"  class="btn btn-primary" value="用户一览CSV取得" onclick="exportConfirm()"/>
+		<input type="button"  class="btn btn-primary" value="返回" onclick="back();"/>
+     </div>
+     <div class="Toglle col-xs-12">  
+		<table id="resourceTable" class="table table-striped table-bordered table-hover">
+			<thead>
+				<tr>
+					<th width="3%">No.</th>
+					<th width="8%">名称</th>
+					<th width="8%">手机号</th>
+					<th width="8%">微信号</th>
+					<th width="8%">平台ID</th>
+					<th width="3%">身高</th>
+					<th width="3%">体重</th>
+					<th width="3%">性别</th>
+					<th width="3%">年龄</th>
+					<th width="3%">体脂率</th>
+					<th width="5%">最后登入时间</th>
+					<th width="5%">最后登入IP</th>
+					<th width="5%">最后登入设备</th>
+				</tr>
+			</thead>
+			<tbody>		
+				<c:forEach items="${user}" var="item" varStatus="status">
+					<tr>
+						<td><c:out value = "${status.count}" /></td>
+						<td><c:out value = "${item.nickname}" /></td>
+						<td><c:out value = "${item.mobile}" /></td>
+						<td><c:out value = "${item.intro}" /></td>
+						<td><c:out value = "${item.platform_id}" /></td>						
+															
+						<td><c:out value = "${item.height}" /></td>
+						<td><c:out value = "${item.weight}" /></td>
+						<td><c:out value = "${item.sex}" /></td>
+						<td><c:out value = "${item.age}" /></td>
+						<td><c:out value = "${item.rate_fat}" /></td>
+						<td><c:out value = "${item.last_login_time}" /></td>
+						<td><c:out value = "${item.last_login_ip}" /></td>
+						<td><c:out value = "${item.device_type}" /></td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+	</div>
+</div>
+<script src="./resources/js/jquery-1.12.4.min.js"></script>
+<script src="./resources/js/bootstrap.min.js"></script>
+<script src="./resources/js/datatables.min.js"></script>
+<script src="./resources/js/rosy-common.js"></script>
+<script>
+$(document).ready(function() {
+	var table = $('#resourceTable').DataTable( {
+		"pageLength": 25,
+		"order": [[ 0, "asc" ]],
+		"autoWidth": true
+	} );
+} );
 function back(){
 	if(window.confirm('是否返回导航画面 ?')){
 		javascript:window.location.href='/bxadmin'
      }
 }
-</script>
-</head>	
-<h2>用户列表</h2>	
-<body>
-<c:if test="${not empty message}">
-	<div role="alert">
-		<p>${message}</p>
-	</div>
-</c:if>
-<br><input type="button"  class="blue_btn" value="新建用户" onclick="javascript:window.location.href='./userInfoAdd'"/>
-	<input type="button" value="用户一览CSV取得" onclick="exportConfirm()"/>
-	<input type="button" value="返回" onclick="back();"/>
-	<table>
-		<tr>
-			<td>
-				<div id="global">
-					<table border="1">
-						<tr>
-							<th>No.</th>
-							<th>名称</th>
-							<th>手机号</th>
-							<th>微信号</th>
-							<th>平台ID</th>
-							<th>身高</th>
-							<th>体重</th>
-							<th>性别</th>
-							<th>年龄</th>
-							<th>体脂率</th>
-							<th>最后登入时间</th>
-							<th>最后登入IP</th>
-							<th>最后登入设备</th>
-						</tr>
-						<c:forEach items="${user}" var="item" varStatus="status">
-							<tr>
-								<td><c:out value = "${status.count}" /></td>
-								<td><c:out value = "${item.nickname}" /></td>
-								<td><c:out value = "${item.mobile}" /></td>
-								<td><c:out value = "${item.intro}" /></td>
-								<td><c:out value = "${item.platform_id}" /></td>						
-																	
-								<td><c:out value = "${item.height}" /></td>
-								<td><c:out value = "${item.weight}" /></td>
-								<td><c:out value = "${item.sex}" /></td>
-								<td><c:out value = "${item.age}" /></td>
-								<td><c:out value = "${item.rate_fat}" /></td>
-								<td><c:out value = "${item.last_login_time}" /></td>
-								<td><c:out value = "${item.last_login_ip}" /></td>
-								<td><c:out value = "${item.device_type}" /></td>
-							</tr>
-						</c:forEach>
-					</table>	
-				</div>
-			</td>
-		</tr>
-	</table>
-<script src="./resources/js/jquery-1.12.4.min.js"></script>
-<script src="./resources/js/test.js"></script>
-<SCRIPT Language="JavaScript">
-
 /**数据库导出确认*/
 function exportConfirm(){
     var url = "./user/csvExport"
     window.open(url);
 }
-
-function back(){
-	if(window.confirm('是否返回导航画面 ?')){
-		javascript:window.location.href='/bxadmin'
-     }
-}
-</script>   
+</script>  
 </body>
 </html>

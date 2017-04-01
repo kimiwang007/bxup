@@ -1,5 +1,6 @@
 package com.bxup.bxup.constroller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -7,9 +8,12 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.bxup.bxup.common.constant.CommonConstant;
 import com.bxup.bxup.model.Subscribe;
 import com.bxup.bxup.service.SubscribeService;
 
@@ -37,6 +41,22 @@ static Logger log = Logger.getLogger(HeadlineController.class.getName());
 		}
 
 		return "headline";
+	}
+	
+	@RequestMapping(value = "/headline_shelves/{id}", method = RequestMethod.GET)
+	public String setShelves(Model model, @PathVariable int id) throws SQLException {
+		log.info("knownsetShelves called");
+		Subscribe subUpdateForm = new Subscribe();
+		subUpdateForm.setId(id);
+		subUpdateForm.setSubscribe_type(0);
+		boolean reval = subscribeService.updateshelves(subUpdateForm);
+		if(reval){
+			log.info("knownsetShelves end");
+		} else {
+			log.info("knownsetShelves failure");
+			return CommonConstant.FORWARD_FAILURE;
+		}
+		return "redirect:/headline";
 	}
 }
 

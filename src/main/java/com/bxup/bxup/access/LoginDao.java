@@ -280,6 +280,26 @@ public class LoginDao {
 		return flag;
 	}
 
+	public boolean Updateshelves(String sql,Object eventUpdateForm) throws SQLException {
+		log.info("Updateshelves Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update(sql, eventUpdateForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("Updateshelves End.");
+			flag = true;
+		}
+		return flag;
+	}
+	
 	// 20170303 Baojun ADD
 	public static String AddT_coach(Coach coachInfoForm) {
 		log.info("SqlAddT_coach Start.");
@@ -333,7 +353,7 @@ public class LoginDao {
 		sucflg = generatedKey.toString();
 		return sucflg;
 	}
-
+		
 	// 20170304 Baojun Add
 	public static String AddT_gym_photo_rel(GymPhoto gymPhotoForm) {
 		log.info("SqlAddT_coach_photo_rel Start.");

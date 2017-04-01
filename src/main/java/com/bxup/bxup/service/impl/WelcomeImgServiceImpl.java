@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.bxup.bxup.access.LoginDao;
 import com.bxup.bxup.constroller.WelcomeController;
+import com.bxup.bxup.model.Subscribe;
 import com.bxup.bxup.model.User;
 import com.bxup.bxup.model.WelcomeIMG;
 import com.bxup.bxup.service.WelcomeImgService;
@@ -42,4 +43,12 @@ public class WelcomeImgServiceImpl implements WelcomeImgService{
 		return sucflg;		
 	};
 	
+	@Override
+	public boolean updateshelves(WelcomeIMG welcomePhoto) throws SQLException{
+		Logger log = Logger.getLogger(SubscribeServiceImpl.class.getName());		
+		dao = new LoginDao();
+		boolean reval = dao.Updateshelves("updateWelshelves", welcomePhoto);
+		log.info("updateshelves");
+		return reval;
+	}	
 }

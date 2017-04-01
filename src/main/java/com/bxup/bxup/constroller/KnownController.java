@@ -2,6 +2,7 @@ package com.bxup.bxup.constroller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bxup.bxup.common.constant.CommonConstant;
 import com.bxup.bxup.model.FeedImgSave;
+import com.bxup.bxup.model.Gym;
 import com.bxup.bxup.model.Subscribe;
 import com.bxup.bxup.service.SubscribeService;
 
@@ -37,9 +40,17 @@ public class KnownController {
 		List<Subscribe> subscribe = subscribeService.findAllKnown();
 		List<Subscribe> known = new ArrayList<Subscribe>();
 
+		Properties properties = new Properties();
+		properties.load(this.getClass().getClassLoader()
+				.getResourceAsStream("Webinfo.properties"));
+
+		String picture_url = properties.getProperty("picture_url");
+		
 		for (int i = 0; i < subscribe.size(); i++) {
-			// String picture_url = properties.getProperty("picture_url");
 			if (subscribe.get(i).getSubscribe_type() == 2) {
+				if(subscribe.get(i).getFeedImg() != null){
+					subscribe.get(i).setFeedImgUrl(picture_url + "/" + subscribe.get(i).getFeedImg());
+				}				
 				known.add(subscribe.get(i));
 				mode.put("known", known);
 			}
@@ -123,6 +134,22 @@ public class KnownController {
 			}
 		}
 		
+		return "redirect:/known";
+	}
+	
+	@RequestMapping(value = "/known_shelves/{id}", method = RequestMethod.GET)
+	public String setShelves(Model model, @PathVariable int id) throws SQLException {
+		log.info("knownsetShelves called");
+		Subscribe subUpdateForm = new Subscribe();
+		subUpdateForm.setId(id);
+		subUpdateForm.setSubscribe_type(2);
+		boolean reval = subscribeService.updateshelves(subUpdateForm);
+		if(reval){
+			log.info("knownsetShelves end");
+		} else {
+			log.info("knownsetShelves failure");
+			return CommonConstant.FORWARD_FAILURE;
+		}
 		return "redirect:/known";
 	}
 }

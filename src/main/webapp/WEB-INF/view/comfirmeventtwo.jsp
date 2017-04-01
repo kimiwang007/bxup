@@ -12,7 +12,6 @@
 <script type="text/javascript" src="./js/test.js"></script>
 <SCRIPT Language="JavaScript">
 function onSubmit(cmd){
-	alert(cmd);
 		var form = document.forms[0];
 			form.action = cmd;
 	

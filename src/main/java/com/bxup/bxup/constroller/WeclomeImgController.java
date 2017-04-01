@@ -2,6 +2,7 @@ package com.bxup.bxup.constroller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -11,12 +12,15 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bxup.bxup.common.constant.CommonConstant;
+import com.bxup.bxup.model.Subscribe;
 import com.bxup.bxup.model.WelcomeIMG;
 import com.bxup.bxup.service.WelcomeImgService;
 
@@ -245,5 +249,20 @@ public class WeclomeImgController {
 		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);
 		Date date = new Date(millSec);
 		return sdf.format(date);
+	}
+	
+	@RequestMapping(value = "/welcomeimg_shelves/{id}", method = RequestMethod.GET)
+	public String setShelves(Model model, @PathVariable int id) throws SQLException {
+		log.info("welcomeimg setShelves called");
+		WelcomeIMG welUpdateForm = new WelcomeIMG();
+		welUpdateForm.setId(id);
+		boolean reval = welcomeImgService.updateshelves(welUpdateForm);
+		if(reval){
+			log.info("welcomeimg setShelves end");
+		} else {
+			log.info("welcomeimg setShelves failure");
+			return CommonConstant.FORWARD_FAILURE;
+		}
+		return "redirect:/welcomeimg";
 	}
 }

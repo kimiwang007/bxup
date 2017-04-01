@@ -2,6 +2,7 @@ package com.bxup.bxup.constroller;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,6 +13,7 @@ import java.util.Properties;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,9 +37,19 @@ static Logger log = Logger.getLogger(ChooseController.class.getName());
 	public String showAllknownchoosehead(Map<String, Object> mode) throws Exception{
 		log.info("showAllknown called");
 		List<Subscribe> subscribe = subscribeService.findAllKnown();
-		List<Subscribe> choose = new ArrayList<Subscribe>();				
+		List<Subscribe> choose = new ArrayList<Subscribe>();
+		
+		Properties properties = new Properties();
+		properties.load(this.getClass().getClassLoader()
+				.getResourceAsStream("Webinfo.properties"));
+
+		String picture_url = properties.getProperty("picture_url");
+		
 		for(int i=0;i<subscribe.size();i++){
 			if(subscribe.get(i).getSubscribe_type() == 3){
+				if(subscribe.get(i).getFeedImg() != null){
+					subscribe.get(i).setFeedImgUrl(picture_url + "/" + subscribe.get(i).getFeedImg());
+				}
 				choose.add(subscribe.get(i));
 				mode.put("choose", choose);
 			}
@@ -122,6 +134,22 @@ static Logger log = Logger.getLogger(ChooseController.class.getName());
 			}
 		}
 		
+		return "redirect:/choose";
+	}
+	
+	@RequestMapping(value = "/choose_shelves/{id}", method = RequestMethod.GET)
+	public String setShelves(Model model, @PathVariable int id) throws SQLException {
+		log.info("choosesetShelves called");
+		Subscribe subUpdateForm = new Subscribe();
+		subUpdateForm.setId(id);
+		subUpdateForm.setSubscribe_type(3);
+		boolean reval = subscribeService.updateshelves(subUpdateForm);
+		if(reval){
+			log.info("choosesetShelves end");
+		} else {
+			log.info("choosesetShelves failure");
+			return CommonConstant.FORWARD_FAILURE;
+		}
 		return "redirect:/choose";
 	}
 }

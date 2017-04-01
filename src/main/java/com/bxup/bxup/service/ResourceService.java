@@ -17,4 +17,5 @@ public interface ResourceService {
 	Event updateImg5(Event eventInsertForm) throws SQLException;
 	Event updateImg6(Event eventInsertForm) throws SQLException;
 	Event updateImg6p(Event eventInsertForm) throws SQLException;
+	boolean updateshelves(Event eventUpdateForm) throws SQLException;
 }

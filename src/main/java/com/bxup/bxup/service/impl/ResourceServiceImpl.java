@@ -59,7 +59,7 @@ public class ResourceServiceImpl implements ResourceService {
 		Logger log = Logger.getLogger(ResourceController.class.getName());		
 		dao = new LoginDao();
 		 boolean updateimg4 = dao.UpdateImg4(eventInsertForm);
-		 log.info("UpdateEventById");
+		 log.info("updateImg4");
 			return null;
 	}
 	
@@ -68,7 +68,7 @@ public class ResourceServiceImpl implements ResourceService {
 		Logger log = Logger.getLogger(ResourceController.class.getName());		
 		dao = new LoginDao();
 		 boolean updateimg5 = dao.UpdateImg5(eventInsertForm);
-		 log.info("UpdateEventById");
+		 log.info("updateImg5");
 			return null;
 	}
 	
@@ -77,7 +77,7 @@ public class ResourceServiceImpl implements ResourceService {
 		Logger log = Logger.getLogger(ResourceController.class.getName());		
 		dao = new LoginDao();
 		 boolean updateimg6 = dao.UpdateImg6(eventInsertForm);
-		 log.info("UpdateEventById");
+		 log.info("updateImg6");
 			return null;
 	}
 	
@@ -86,9 +86,16 @@ public class ResourceServiceImpl implements ResourceService {
 		Logger log = Logger.getLogger(ResourceController.class.getName());		
 		dao = new LoginDao();
 		 boolean updateimg6p = dao.UpdateImg6p(eventInsertForm);
-		 log.info("UpdateEventById");
+		 log.info("updateImg6p");
 			return null;
 	}
 	
-	
+	@Override
+	public boolean updateshelves(Event eventUpdateForm) throws SQLException{
+		Logger log = Logger.getLogger(ResourceController.class.getName());		
+		dao = new LoginDao();
+		boolean reval = dao.Updateshelves("updateshelves", eventUpdateForm);
+		log.info("updateshelves");
+		return reval;
+	}
 }

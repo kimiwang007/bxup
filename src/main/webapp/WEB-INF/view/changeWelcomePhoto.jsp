@@ -58,7 +58,7 @@
 
 </head>
 <body>
-	<h2>闪屏变更</h2>
+	<h2>添加闪屏</h2>
 	<form enctype="multipart/form-data" action="welcomePhotoAdd" method="post">
 		<table>
 			<tr>

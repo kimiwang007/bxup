@@ -10,52 +10,96 @@
 <html>
 <head>
 <title>welcomePhoto.jsp</title>
-<script type="text/javascript" src="./js/test.js"></script>
-<SCRIPT Language="JavaScript">
-	function back() {
-		if (window.confirm('是否返回导航画面 ?')) {
-			javascript: window.location.href = '/bxadmin'
-		}
-	}
-</script>
+<link href="./resources/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="./resources/css/datatables.min.css" rel="stylesheet"/>
+<link href="./resources/css/rosy-standard.css" rel="stylesheet"/>
+<link href="./resources/css/datepicker.css" rel="stylesheet"/>
+<link href="./resources/css/bxadmin.css" rel="stylesheet"/>
 </head>
-<h2>闪屏列表</h2>
 <body>
-	<c:if test="${not empty message}">
-		<div role="alert">
-			<p>${message}</p>
+<body>
+	<div class="container" style="width:100%;">
+		<div class="Toglle col-xs-12">
+			<h2>闪屏列表</h2>	
 		</div>
-	</c:if>
-	<br>
-	<input type="button" class="blue_btn" value="变更闪屏"
-		onclick="javascript:window.location.href='./welcomeimg/changeWelcomePhoto'" />
-	<input type="button" value="返回" onclick="back();" />
-	<table border="1">
-		<tr>
-			<th>开始日期</th>
-			<th>结束日期</th>
-			<th>创建时间</th>
-			<th>iphone4闪屏</th>
-			<th>iphone5闪屏</th>
-			<th>iphone6闪屏</th>
-			<th>iphone6p闪屏</th>
-			<th>iphone7闪屏</th>
-			<th>iphone7p闪屏</th>
-		</tr>
-		<c:forEach items="${welcomePhoto}" var="item" varStatus="status">
-			<tr>
-				<td><c:out value="${item.start_date}" /></td>
-				<td><c:out value="${item.end_date}" /></td>
-				<td><c:out value="${item.create_date}" /></td>
-				<td><a href="${item.iphone4url}" target="_blank"><c:out value="${item.iphone4_img}" /></td>
-				<td><a href="${item.iphone5url}" target="_blank"><c:out value="${item.iphone5_img}" /></td>
-				<td><a href="${item.iphone6url}" target="_blank"><c:out value="${item.iphone6_img}" /></td>
-				<td><a href="${item.iphone6purl}" target="_blank"><c:out value="${item.iphone6p_img}" /></td>
-				<td><a href="${item.iphone7url}" target="_blank"><c:out value="${item.iphone7_img}" /></td>
-				<td><a href="${item.iphone7purl}" target="_blank"><c:out value="${item.iphone7p_img}" /></td>
-			</tr>
-		</c:forEach>
-	</table>
-
+    	<c:if test="${not empty message}">
+			<div role="alert" class="Toglle col-xs-12">
+				<p>${message}</p>
+			</div>
+		</c:if>        
+        <div class="col-xs-12">        
+			<input type="button"  class="btn btn-primary" value="添加闪屏" onclick="javascript:window.location.href='./welcomeimg/changeWelcomePhoto'"/>
+		    <input type="button"  class="btn btn-primary" value="返回" onclick="back();"/>
+        </div>
+        <div class="Toglle col-xs-12">  
+			<table id="resourceTable" class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr>
+						<th width="10%">开始日期</th>
+						<th width="10%">结束日期</th>
+						<th width="10%">创建时间</th>
+						<th width="9%">iphone4闪屏</th>
+						<th width="9%">iphone5闪屏</th>
+						<th width="9%">iphone6闪屏</th>
+						<th width="9%">iphone6p闪屏</th>
+						<th width="9%">iphone7闪屏</th>
+						<th width="9%">iphone7p闪屏</th>
+						<th width="7%">上架</th>
+						<th width="10%">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<c:forEach items="${welcomePhoto}" var="item" varStatus="status">
+						<tr>
+							<td><c:out value="${item.start_date}" /></td>
+							<td><c:out value="${item.end_date}" /></td>
+							<td><c:out value="${item.create_date}" /></td>
+							<td><a href="${item.iphone4url}" target="_blank"><c:out value="${item.iphone4_img}" /></td>
+							<td><a href="${item.iphone5url}" target="_blank"><c:out value="${item.iphone5_img}" /></td>
+							<td><a href="${item.iphone6url}" target="_blank"><c:out value="${item.iphone6_img}" /></td>
+							<td><a href="${item.iphone6purl}" target="_blank"><c:out value="${item.iphone6p_img}" /></td>
+							<td><a href="${item.iphone7url}" target="_blank"><c:out value="${item.iphone7_img}" /></td>
+							<td><a href="${item.iphone7purl}" target="_blank"><c:out value="${item.iphone7p_img}" /></td>
+							<td>
+								<c:if test="${item.shelves == 1}">
+									<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='welcomeimg/welcomeimg_shelves/${item.id}'" value="上架">
+								</c:if>
+								<c:if test="${item.shelves == -1}">
+									<input type="button"  class="btn btn-danger" onclick="javascript:window.location.href='welcomeimg/welcomeimg_shelves/${item.id}'" value="下架">
+								</c:if>
+							</td>
+							<td>
+								<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='welcomeimg/welcomeimg_edit/${item.id}'" value="编辑">
+								<input type="button"  class="btn btn-primary" onclick="delConfirm(${item.id});" value="删除">
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<script src="./resources/js/jquery-1.12.4.min.js"></script>
+    <script src="./resources/js/bootstrap.min.js"></script>
+    <script src="./resources/js/datatables.min.js"></script>
+    <script src="./resources/js/rosy-common.js"></script>
+    <script>
+    $(document).ready(function() {
+    	var table = $('#resourceTable').DataTable( {
+    		"pageLength": 25,
+    		"order": [[ 0, "asc" ]],
+    		"autoWidth": true
+    	} );
+    } );
+    function delConfirm(itemId){	
+    	if(window.confirm('确定要删除该活动吗?')){
+    		javascript:window.location.href='resources/event_delete/' + itemId
+        }
+    }
+    function back(){
+    	if(window.confirm('是否返回导航画面 ?')){
+    		javascript:window.location.href='/bxadmin'
+         }
+    }
+    </script> 
 </body>
 </html>

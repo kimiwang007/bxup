@@ -19,6 +19,10 @@
 			update t_welcome_img  
 			SET delete_status=-1
 	</update>
-	
-
+	<!-- update -->
+	<update id="updateWelshelves" parameterClass="WelcomeIMG"> 
+		update t_welcome_img 
+		SET shelves= shelves * -1
+		WHERE id=#id#
+	</update>
 </sqlMap> 

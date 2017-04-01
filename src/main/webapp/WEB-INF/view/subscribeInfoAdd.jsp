@@ -74,7 +74,7 @@ function back(){
 </head>
 <body>
 	<h2></h2>
-	<form enctype="multipart/form-data" action="subscribeInfoAdd"
+	<form enctype="multipart/form-data" action="../subscribeInfoAdd"
 		method="post">
 
 		<table>
@@ -121,10 +121,20 @@ function back(){
 				</c:choose>
 			</tr>
 		</table>
-		<br> <input type="hidden" value="${subscribe_type}"
-			name="subscribe_type" id="subscribe_type"> <input type="submit" value="上传"
-			onclick="return onSubmit('Comfirm');" class="input"> <input
-			type="button" value="返回" onclick="back();"> <input
-			type="button" value="重置" onclick="clearAll();">
+		<br>
+			<c:choose>
+				<c:when test="${subscribe_type =='known'}">
+					<input type="hidden" value="2" name="subscribe_type" id="subscribe_type">
+				</c:when>
+				<c:when test="${subscribe_type =='headline'}">
+					<input type="hidden" value="0" name="subscribe_type" id="subscribe_type">
+				</c:when>
+				<c:otherwise>
+					<input type="hidden" value="3" name="subscribe_type" id="subscribe_type">
+				</c:otherwise>
+			</c:choose>			
+			<input type="submit" value="上传" onclick="return onSubmit('Comfirm');" class="input"> 
+			<input type="button" value="返回" onclick="back();"> 
+			<input type="button" value="重置" onclick="clearAll();">
 
 	</form>

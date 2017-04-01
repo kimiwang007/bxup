@@ -6,6 +6,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class WelcomeIMG {
 
+	private int id;
+	
 	private String start_date;
 
 	private String end_date;
@@ -32,6 +34,8 @@ public class WelcomeIMG {
 
 	private int delete_status;
 	
+	private int shelves;
+	
 	private MultipartFile iphone4;
 
 	private MultipartFile iphone5;
@@ -56,6 +60,15 @@ public class WelcomeIMG {
 	
 	private String iphone7purl;
 	
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getIphone4url() {
 		return iphone4url;
 	}
@@ -191,6 +204,14 @@ public class WelcomeIMG {
 
 	public void setDelete_status(int delete_status) {
 		this.delete_status = delete_status;
+	}
+
+	public int getShelves() {
+		return shelves;
+	}
+
+	public void setShelves(int shelves) {
+		this.shelves = shelves;
 	}
 
 	public MultipartFile getIphone4() {

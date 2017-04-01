@@ -34,6 +34,12 @@
 			WHERE id=#id#
 			AND subscribe_type=#subscribe_type#
 	</update>
+	<update id="updateSubshelves" parameterClass="SubscribeForm"> 
+		update t_subscribe 
+		SET shelves= shelves * -1
+		WHERE id=#id#
+		AND subscribe_type=#subscribe_type#
+	</update>
 	<!-- delete -->
 
 </sqlMap> 

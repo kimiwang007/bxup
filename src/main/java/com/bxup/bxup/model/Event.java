@@ -84,6 +84,8 @@ public class Event {
 
 	private String del_fg;
 
+	private int shelves;
+	
 	private String timem;
 
 	public String getTab() {
@@ -422,4 +424,12 @@ public class Event {
 		this.eventPlace = eventPlace;
 	}
 
+	public int getShelves() {
+		return shelves;
+	}
+
+	public void setShelves(int shelves) {
+		this.shelves = shelves;
+	}
+	
 }

@@ -33,6 +33,8 @@ public class Gym {
 	private Long hot;
 	
 	private String approvedfg;
+	
+	private Integer shelves;
 		
 	private MultipartFile gympicture1;
 	
@@ -162,6 +164,14 @@ public class Gym {
 
 	public void setApprovedfg(String approvedfg) {
 		this.approvedfg = approvedfg;
+	}
+	
+	public Integer getShelves() {
+		return shelves;
+	}
+
+	public void setShelves(Integer shelves) {
+		this.shelves = shelves;
 	}
 
 	public MultipartFile getGympicture1() {
