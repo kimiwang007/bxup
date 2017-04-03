@@ -53,6 +53,7 @@
 					<th width="10%">图片3</th>
 					<th width="10%">图片4</th>
 					<th width="10%">图片5</th>
+					<th width="10%">操作</th>
 				</tr>
 			</thead>
 			<tbody>		
@@ -77,6 +78,10 @@
 						<td><a href="${item.picture3}" target="_blank"><c:out value = "${item.pictureName3}" /></a></td>
 						<td><a href="${item.picture4}" target="_blank"><c:out value = "${item.pictureName4}" /></a></td>
 						<td><a href="${item.picture5}" target="_blank"><c:out value = "${item.pictureName5}" /></a></td>
+						<td>
+							<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='coach/coach_edit/${item.id}'" value="编辑">
+							<input type="button"  class="btn btn-primary" onclick="delConfirm(${item.id});" value="删除">
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>

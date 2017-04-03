@@ -50,6 +50,7 @@
 					<th width="9%">图片4</th>
 					<th width="9%">图片5</th>
 					<th width="6%">上架</th>
+					<th width="10%">操作</th>
 				</tr>
 			</thead>
 			<tbody>					
@@ -77,6 +78,10 @@
 							<c:if test="${item.shelves == -1}">
 								<input type="button"  class="btn btn-danger" onclick="javascript:window.location.href='gym/gym_shelves/${item.id}'" value="下架">
 							</c:if>
+						</td>
+						<td>
+							<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='gym/gym_edit/${item.id}'" value="编辑">
+							<input type="button"  class="btn btn-primary" onclick="delConfirm(${item.id});" value="删除">
 						</td>
 					</tr>
 				</c:forEach>

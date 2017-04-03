@@ -36,10 +36,10 @@
 			<thead>
 				<tr>
 					<th width="3%">No.</th>
-					<th width="8%">名称</th>
-					<th width="8%">手机号</th>
-					<th width="8%">微信号</th>
-					<th width="8%">平台ID</th>
+					<th width="5%">名称</th>
+					<th width="7%">手机号</th>
+					<th width="7%">微信号</th>
+					<th width="7%">平台ID</th>
 					<th width="3%">身高</th>
 					<th width="3%">体重</th>
 					<th width="3%">性别</th>
@@ -48,6 +48,7 @@
 					<th width="5%">最后登入时间</th>
 					<th width="5%">最后登入IP</th>
 					<th width="5%">最后登入设备</th>
+					<th width="4%">删除</th>
 				</tr>
 			</thead>
 			<tbody>		
@@ -57,8 +58,7 @@
 						<td><c:out value = "${item.nickname}" /></td>
 						<td><c:out value = "${item.mobile}" /></td>
 						<td><c:out value = "${item.intro}" /></td>
-						<td><c:out value = "${item.platform_id}" /></td>						
-															
+						<td><c:out value = "${item.platform_id}" /></td>
 						<td><c:out value = "${item.height}" /></td>
 						<td><c:out value = "${item.weight}" /></td>
 						<td><c:out value = "${item.sex}" /></td>
@@ -67,6 +67,9 @@
 						<td><c:out value = "${item.last_login_time}" /></td>
 						<td><c:out value = "${item.last_login_ip}" /></td>
 						<td><c:out value = "${item.device_type}" /></td>
+						<td>
+							<input type="button"  class="btn btn-primary" onclick="delConfirm(${item.user_Id});" value="删除">
+						</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -85,6 +88,11 @@ $(document).ready(function() {
 		"autoWidth": true
 	} );
 } );
+function delConfirm(itemId){	
+	if(window.confirm('确定要删除该用户吗?')){
+		javascript:window.location.href='user/user_delete/' + itemId
+    }
+}
 function back(){
 	if(window.confirm('是否返回导航画面 ?')){
 		javascript:window.location.href='/bxadmin'
