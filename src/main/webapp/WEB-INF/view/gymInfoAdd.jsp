@@ -63,9 +63,9 @@ function checkInput(){
 			document.getElementById("tel").focus();
 			return false;
 		}
-		if(document.getElementById("tab").value == ""){
+		if(document.getElementById("tag").value == ""){
 			alert("请添加标签");
-			document.getElementById("tab").focus();
+			document.getElementById("tag").focus();
 			return false;
 		}
 		if (isNaN(document.getElementById("hot").value)) {

@@ -8,7 +8,7 @@
 	<select id="selectAllFeedBack" parameterClass="FeedBackForm"
 		resultClass="com.bxup.bxup.model.FeedBack">  
              select * from 
-             t_feedback
+             t_feedback order by id DESC
 	</select>
 	<!-- insert -->
 	<!-- delete -->

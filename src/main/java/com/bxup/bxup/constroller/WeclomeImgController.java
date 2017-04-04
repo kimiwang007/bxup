@@ -66,15 +66,17 @@ public class WeclomeImgController {
 	@RequestMapping(value = "/welcomePhotoAdd", method = RequestMethod.POST)
 	public String WelcomePhotoAdd(@ModelAttribute WelcomeIMG welcomePhoto, Map<String, Object> mode)
 			throws IllegalStateException, IOException {
+		
 		log.info("welcomePhotoAdd called");
 		String suuflg = welcomeImgService.updateWelcomePhoto(welcomePhoto);
-		// Date d = new Date();
-		// Long create_date = d.getTime();
-		// // welcomePhoto.setCreate_date(create_date);
+		if(CommonConstant.FORWARD_FAILURE.equals(suuflg)){
+			mode.put("message", "updateWelcomePhoto failure");
+			return "changeWelcomePhoto";
+		}
 		welcomePhoto.setDelete_status(1);
 		Properties properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
-		String picturepositiontmp = properties.getProperty("gympictureposition");
+		String picturepositiontmp = properties.getProperty("pictureposition");
 
 		String imgtime = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 		StringBuilder filenamesave = new StringBuilder();
@@ -96,10 +98,10 @@ public class WeclomeImgController {
 			try {
 				file.transferTo(new File(path));
 				welcomePhoto.setIphone4_img(filenamesave.toString());
-			} catch (IllegalStateException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				mode.put("message", "Iphone4_img upload failure");
+				return "changeWelcomePhoto";
 			}
 		}
 
@@ -119,10 +121,10 @@ public class WeclomeImgController {
 			try {
 				file.transferTo(new File(path));
 				welcomePhoto.setIphone5_img(filenamesave.toString());
-			} catch (IllegalStateException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				mode.put("message", "Iphone5_img upload failure");
+				return "changeWelcomePhoto";
 			}
 		}
 
@@ -142,10 +144,10 @@ public class WeclomeImgController {
 			try {
 				file.transferTo(new File(path));
 				welcomePhoto.setIphone6_img(filenamesave.toString());
-			} catch (IllegalStateException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				mode.put("message", "Iphone6_img upload failure");
+				return "changeWelcomePhoto";
 			}
 		}
 
@@ -165,10 +167,10 @@ public class WeclomeImgController {
 			try {
 				file.transferTo(new File(path));
 				welcomePhoto.setIphone6p_img(filenamesave.toString());
-			} catch (IllegalStateException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				mode.put("message", "Iphone6p_img upload failure");
+				return "changeWelcomePhoto";
 			}
 		}
 
@@ -188,10 +190,10 @@ public class WeclomeImgController {
 			try {
 				file.transferTo(new File(path));
 				welcomePhoto.setIphone7_img(filenamesave.toString());
-			} catch (IllegalStateException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				mode.put("message", "Iphone7_img upload failure");
+				return "changeWelcomePhoto";
 			}
 		}
 
@@ -211,29 +213,16 @@ public class WeclomeImgController {
 			try {
 				file.transferTo(new File(path));
 				welcomePhoto.setIphone7p_img(filenamesave.toString());
-			} catch (IllegalStateException e) {
+			}  catch (Exception e) {
 				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
+				mode.put("message", "Iphone7p_img upload failure");
+				return "changeWelcomePhoto";
 			}
 		}
 
 		Date d = new Date();
 		Long create_time = d.getTime();
 		welcomePhoto.setCreate_date(create_time);
-
-		// SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMdd");
-		// try {
-		// Date startDate= sdf.parse(welcomePhoto.getStart_date());
-		// Date endDate= sdf.parse(welcomePhoto.getEnd_date());
-		// Date createDate= new Date();
-		// welcomePhoto.setStartDate(startDate);
-		// welcomePhoto.setEndDate(endDate);
-		// welcomePhoto.setCreateDate(createDate);
-		// } catch (ParseException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
 
 		String sucflg = welcomeImgService.insertWelcomePhoto(welcomePhoto);
 		if (sucflg.equals(CommonConstant.FORWARD_SUCCESS)) {

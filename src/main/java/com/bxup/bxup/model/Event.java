@@ -20,7 +20,7 @@ public class Event {
 
 	private String eventPlace;
 
-	private String tab;
+	private String tag;
 
 	private String iPhone4IMGName;
 
@@ -88,12 +88,12 @@ public class Event {
 	
 	private String timem;
 
-	public String getTab() {
-		return tab;
+	public String getTag() {
+		return tag;
 	}
 
-	public void setTab(String tab) {
-		this.tab = tab;
+	public void setTag(String tag) {
+		this.tag = tag;
 	}
 
 	public String getTimem() {

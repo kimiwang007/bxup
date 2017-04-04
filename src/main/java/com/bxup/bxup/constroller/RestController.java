@@ -138,7 +138,7 @@ public class RestController {
 		model.addAttribute("img_Type", eventInsertForm.getImg_Type());
 		model.addAttribute("endDate", eventInsertForm.getEndDate());
 		model.addAttribute("startDate", eventInsertForm.getStartDate());
-		model.addAttribute("tab", eventInsertForm.getTab());
+		model.addAttribute("tag", eventInsertForm.getTag());
 
 		return "eventAdd";
 	}
@@ -148,7 +148,7 @@ public class RestController {
 			Event eventInsertForm) throws IllegalStateException, IOException {
 		log.info("comfirmeventAdd called");
 		model.addAttribute("event_name", eventInsertForm.getEventName());
-		model.addAttribute("tab", eventInsertForm.getTab());
+		model.addAttribute("tag", eventInsertForm.getTag());
 		model.addAttribute("event_start_date", eventInsertForm.getEventStartDate());
 		model.addAttribute("event_end_date", eventInsertForm.getEventEndDate());
 		model.addAttribute("event_time", eventInsertForm.getEventTime());

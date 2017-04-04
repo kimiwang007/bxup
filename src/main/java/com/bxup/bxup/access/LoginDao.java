@@ -53,7 +53,7 @@ public class LoginDao {
 		if (ImgtypeEnum.STRING_EVENT.getStringValue().equals(Integer.toString(imgtype))
 				|| ImgtypeEnum.STRING_BANNER.getStringValue().equals(Integer.toString(imgtype))) {
 			eventAdd.setEventName(eventInsertForm.getEventName());
-			eventAdd.setTab(eventInsertForm.getTab());
+			eventAdd.setTag(eventInsertForm.getTag());
 			eventAdd.setEventDesc(eventInsertForm.getEventDesc());
 			eventAdd.setEventPlace(eventInsertForm.getEventPlace());
 			eventAdd.setImgtype(imgtype);

@@ -7,7 +7,7 @@
 	<!-- select -->
 	<select id="selectAllEvent" resultClass="Event">    
              select * from 
-             t_event where del_fg=0 ORDER BY event_start_date DESC
+             t_event where del_fg=0 ORDER BY id DESC
 	</select>
 	<select id="selectEventById" resultClass="Event">    
              select * from 
@@ -17,9 +17,9 @@
 	<!-- insert -->
 	<insert id="insertEventInsertForm1" parameterClass="Event">
 		insert into
-		t_event(event_name,tab,event_desc,event_place,img_type,iphone4_img,iphone5_img,iphone6_img,iphone6p_img,android_img1,
+		t_event(event_name,tag,event_desc,event_place,img_type,iphone4_img,iphone5_img,iphone6_img,iphone6p_img,android_img1,
 		android_img2,android_img3,event_start_date,event_end_date,event_time,event_link,create_date,create_id,del_fg)
-		values(#eventName#,#tab#,#eventDesc#,#eventPlace#,#imgtype#,#iPhone4IMGName#,#iPhone5IMGName#,#iPhone6IMGName#,#iPhone6PIMGName#,
+		values(#eventName#,#tag#,#eventDesc#,#eventPlace#,#imgtype#,#iPhone4IMGName#,#iPhone5IMGName#,#iPhone6IMGName#,#iPhone6PIMGName#,
 		#androidIMGName1#,#androidIMGName2#,#androidIMGName3#,#eventStartDate#,#eventEndDate#,#eventTime#,#eventLink#,#createDate#,#createID#,#del_fg#)
 	</insert>
 	<insert id="insertEventInsertForm2" parameterClass="Event">
@@ -29,9 +29,9 @@
 	</insert>
 	<insert id="insertLoginpicture" parameterClass="Event">
 		insert into
-		t_event(event_name,tab,event_desc,event_place,img_type,iphone4_img,iphone5_img,iphone6_img,iphone6p_img,android_img1,
+		t_event(event_name,tag,event_desc,event_place,img_type,iphone4_img,iphone5_img,iphone6_img,iphone6p_img,android_img1,
 		android_img2,android_img3,event_start_date,event_end_date,event_time,event_link,create_date,create_id,del_fg)
-		values(#eventName#,#tab#,#eventDesc#,#eventPlace#,#imgtype#,#iPhone4IMGName#,#iPhone5IMGName#,#iPhone6IMGName#,#iPhone6PIMGName#,
+		values(#eventName#,#tag#,#eventDesc#,#eventPlace#,#imgtype#,#iPhone4IMGName#,#iPhone5IMGName#,#iPhone6IMGName#,#iPhone6PIMGName#,
 		#androidIMGName1#,#androidIMGName2#,#androidIMGName3#,#eventStartDate#,#eventEndDate#,#eventTime#,#eventLink#,#createDate#,#createID#,#del_fg#)
 	</insert>
 	<!-- update -->
@@ -42,7 +42,7 @@
 	</update>
 	<update id="updateEventById" parameterClass="Event">          
 			update t_event  
-			SET event_name=#event_name#,tab=#tab#,event_start_date=#event_start_date#,event_end_date=#event_end_date#,
+			SET event_name=#event_name#,tag=#tag#,event_start_date=#event_start_date#,event_end_date=#event_end_date#,
 			event_time=#event_time#,event_link=#event_link#,event_desc=#event_desc#,event_place=#event_place#
 			WHERE id=#id# 
 	</update>

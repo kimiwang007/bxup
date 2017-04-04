@@ -51,7 +51,7 @@
 
 	function back() {
 		if (window.confirm('是否返回闪屏一览 ?')) {
-			javascript: window.location.href = 'welcomeimg'
+			javascript: window.location.href = '../welcomeimg'
 		}
 	}
 </script>
@@ -59,6 +59,11 @@
 </head>
 <body>
 	<h2>添加闪屏</h2>
+	<c:if test="${not empty message}">
+		<div role="alert" class="Toglle col-xs-12">
+			<p>${message}</p>
+		</div>
+	</c:if>
 	<form enctype="multipart/form-data" action="welcomePhotoAdd" method="post">
 		<table>
 			<tr>

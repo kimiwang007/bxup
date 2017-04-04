@@ -36,8 +36,8 @@
 	<!-- insert -->
 	<insert id="insertCoachInfoForm" parameterClass="Coach">
 		insert into
-		t_coach(avatar,gym_id,name,create_time,approved,delete_status,gendar,age,province,city,genius,honor,profile,user_id,tag,hot)
-		values(#avatar#,#gym_id#,#name#,#create_time#,#approved#,#delete_status#,#gendar#,#age#,#province#,#city#,#genius#,#honor#,#profile#,#user_id#,#tag#,#hot#)
+		t_coach(avatar,gym_id,name,create_time,approved,delete_status,gendar,age,province,address,city,genius,honor,profile,user_id,tag,hot)
+		values(#avatar#,#gym_id#,#name#,#create_time#,#approved#,#delete_status#,#gendar#,#age#,#province#,#address#,#city#,#genius#,#honor#,#profile#,#user_id#,#tag#,#hot#)
 		<selectKey resultClass="int" keyProperty="id" >     
 			select LAST_INSERT_ID() as value     
 		</selectKey>

@@ -50,7 +50,7 @@ public class EventInsertServiceImpl implements EventInsertService{
 				eventEnddate = formatter.format(dbdate);
 				eventInsertForm.setEventEndDate(formatter.format(dbdate));
 				eventInsertForm.setEventName(eventInsertForm.getEvent_name());
-				eventInsertForm.setTab(eventInsertForm.getTab());
+				eventInsertForm.setTag(eventInsertForm.getTag());
 				eventInsertForm.setEventTime(eventInsertForm.getEvent_time());
 				eventInsertForm.setEventLink(eventInsertForm.getEvent_link());
 				eventInsertForm.setEventDesc(eventInsertForm.getEvent_desc());

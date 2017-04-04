@@ -22,7 +22,7 @@
 		from t_show s left join t_user u on s.user_id = u.user_id
 		left join t_show_photo_rel rel on s.id = rel.show_id
 		left join t_photo photo on rel.photo_id = photo.id
-		where delete_status = 1 order by s.id
+		where delete_status = 1 order by s.id DESC
 	</select>
 
 	<select id="selectshowbyid" resultClass="ShowForm">

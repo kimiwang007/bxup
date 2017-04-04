@@ -52,7 +52,7 @@
 						<tr>
 							<td><c:out value = "${status.count}" /></td>
 							<td><c:out value = "${item.event_name}" /></td>
-							<td><c:out value = "${item.tab}" /></td>
+							<td><c:out value = "${item.tag}" /></td>
 							<td><c:out value = "${item.event_start_date}" /></td>
 							<td><c:out value = "${item.event_end_date}" /></td>
 							<td><c:out value = "${item.timem}" /></td>
