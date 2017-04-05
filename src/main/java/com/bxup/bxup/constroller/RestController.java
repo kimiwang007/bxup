@@ -319,7 +319,7 @@ public class RestController {
 			return CommonConstant.FORWARD_FAILURE;
 		}
 	}
-	
+
 	// 20170314 Baojun Add
 	@RequestMapping(value = "/userAdd", method = RequestMethod.POST)
 	public String userAdd(Model model, HttpServletRequest request, HttpServletResponse response, User user)
@@ -419,6 +419,7 @@ public class RestController {
 				MultipartFile file = multiRequest.getFile(iter.next().toString());
 				String picturename = file.getOriginalFilename();
 				subscribeForm.setImg(picturename);
+				subscribeForm.setFeedImg(picturename);
 				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
 					String path = picturepositiontmp + picturename;
 					file.transferTo(new File(path));

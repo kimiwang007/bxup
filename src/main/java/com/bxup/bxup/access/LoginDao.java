@@ -177,7 +177,6 @@ public class LoginDao {
 			flag = true;
 		}
 		return flag;
-
 	}
 
 	public boolean UpdateEventById(Event eventInsertForm) throws SQLException {
@@ -280,7 +279,7 @@ public class LoginDao {
 		return flag;
 	}
 
-	public boolean Updateshelves(String sql,Object eventUpdateForm) throws SQLException {
+	public boolean Updateshelves(String sql, Object eventUpdateForm) throws SQLException {
 		log.info("Updateshelves Start.");
 		boolean flag = false;
 		Object object = false;
@@ -299,7 +298,7 @@ public class LoginDao {
 		}
 		return flag;
 	}
-	
+
 	// 20170303 Baojun ADD
 	public static String AddT_coach(Coach coachInfoForm) {
 		log.info("SqlAddT_coach Start.");
@@ -353,7 +352,7 @@ public class LoginDao {
 		sucflg = generatedKey.toString();
 		return sucflg;
 	}
-		
+
 	// 20170304 Baojun Add
 	public static String AddT_gym_photo_rel(GymPhoto gymPhotoForm) {
 		log.info("SqlAddT_coach_photo_rel Start.");
@@ -858,6 +857,69 @@ public class LoginDao {
 
 		log.info("insertWelcomePhoto End.");
 		return sucflg;
+	}
+
+	// 20170403 Baojun Add
+	public static Subscribe SelectKnownById(String id) throws SQLException {
+		log.info("SelectKnownById Start.");
+		Subscribe subscribe = null;
+		String sucflg = null;
+		try {
+			subscribe = (Subscribe) sqlMap.queryForObject("SelectSubscribeForID", id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		sucflg = CommonConstant.FORWARD_SUCCESS;
+		log.info("SelectKnownById End.");
+		return subscribe;
+	}
+
+	// 20170403 Baojun Add
+	public boolean UpdateKnownById(Subscribe subscribe) throws SQLException {
+		log.info("SqlUpdateKnownById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("updateKnownById", subscribe);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("sqlUpdateKnownById End.");
+			flag = true;
+		}
+		return flag;
+	}
+	
+	// 20170404 Baojun Add
+	public boolean DeleteKnownById(String id) throws SQLException {
+		log.info("SqlDeleteKnownById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		int a = Integer.parseInt(id);
+		Subscribe subscribe = new Subscribe();
+		subscribe.setId(a);
+		try {
+			object = sqlMap.update("deleteKnownById", subscribe);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("sqlDeleteKnownById End.");
+			flag = true;
+		}
+		return flag;
 	}
 
 }

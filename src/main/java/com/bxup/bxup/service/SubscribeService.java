@@ -3,8 +3,6 @@ package com.bxup.bxup.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.bxup.bxup.model.Event;
-import com.bxup.bxup.model.Gym;
 import com.bxup.bxup.model.Subscribe;
 
 public interface SubscribeService {
@@ -20,4 +18,11 @@ public interface SubscribeService {
 	boolean UpdateFeedImgByid(Subscribe subscribe) throws SQLException;
 	
 	boolean updateshelves(Subscribe subscribe) throws SQLException;
+	
+	Subscribe findKnownById(String id) throws SQLException;
+	
+	Subscribe updateKnownById(Subscribe subscribe) throws SQLException;
+	
+	Subscribe deleteKnownById(String id) throws SQLException;
+	
 }

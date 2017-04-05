@@ -53,18 +53,18 @@ function checkInput(){
 
 
 function back(){
-	if(document.getElementById("subscribe_type").value == "known"){
+	if(document.getElementById("subscribe_type").value == "2"){
 		if(window.confirm('是否返回知道列表 ?')){
 			javascript:window.location.href='/bxadmin/known';
 	    }
-	} else if(document.getElementById("subscribe_type").value == "headline") {
-		if(window.confirm('是否返回头条列表 ?')){
-			javascript:window.location.href='/bxadmin/headline';
-	    }
-	} else {
+	} else if(document.getElementById("subscribe_type").value == "3") {
 		if(window.confirm('是否精选列表 ?')){
 			javascript:window.location.href='/bxadmin/choose';
 	    }
+	} else {
+		if(window.confirm('是否返回头条列表 ?')){
+			javascript:window.location.href='/bxadmin/headline';
+	    }		
 	}
 	
 }

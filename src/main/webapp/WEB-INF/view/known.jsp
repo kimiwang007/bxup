@@ -95,7 +95,7 @@
     } );
     function delConfirm(itemId){	
     	if(window.confirm('确定要删除该活动吗?')){
-    		javascript:window.location.href='resources/event_delete/' + itemId
+    		javascript:window.location.href='known/known_delete/' + itemId
         }
     }
     function setFeedIMG(){
