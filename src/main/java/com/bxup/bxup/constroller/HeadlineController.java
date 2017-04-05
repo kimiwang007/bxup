@@ -120,7 +120,7 @@ static Logger log = Logger.getLogger(HeadlineController.class.getName());
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String picturepositiontmp = properties.getProperty("picturepositiontmp");
+		String picturepositiontmp = properties.getProperty("pictureposition");
 		if (multipartResolver.isMultipart(request)) {
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			Iterator<?> iter = multiRequest.getFileNames();
@@ -149,7 +149,7 @@ static Logger log = Logger.getLogger(HeadlineController.class.getName());
 						e.printStackTrace();
 					}
 				}
-				subscribe.setFeedImg(filename.get("feedimg"));
+				subscribe.setImg(picturename);
 			}
 		}
 		

@@ -419,7 +419,7 @@ public class RestController {
 				MultipartFile file = multiRequest.getFile(iter.next().toString());
 				String picturename = file.getOriginalFilename();
 				subscribeForm.setImg(picturename);
-				subscribeForm.setFeedImg(picturename);
+//				subscribeForm.setFeedImg(picturename);
 				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
 					String path = picturepositiontmp + picturename;
 					file.transferTo(new File(path));
