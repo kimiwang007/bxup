@@ -8,6 +8,10 @@
 	<select id="selectAllWelcomePhoto" resultClass="WelcomeIMG">    
              select * from t_welcome_img where delete_status = 1
 	</select>
+	<select id="findWelcomeById" resultClass="WelcomeIMG">    
+             select id,start_date,end_date,create_date,iphone4_img,iphone5_img,iphone6_img,iphone6p_img,iphone7_img,iphone7p_img
+             from t_welcome_img where delete_status = 1 and id=#id#
+	</select>
 	<!-- insert -->
   	<insert id="insertWelcomePhoto" parameterClass="WelcomeIMG">
 		insert into
@@ -23,6 +27,12 @@
 	<update id="updateWelshelves" parameterClass="WelcomeIMG"> 
 		update t_welcome_img 
 		SET shelves= shelves * -1
+		WHERE id=#id#
+	</update>
+	<update id="updateWelcomeIMGByID" parameterClass="WelcomeIMG"> 
+		update t_welcome_img 
+		SET start_date=#start_date#,end_date=#end_date#,create_date=#create_date#,iphone4_img=#iphone4_img#,iphone5_img=#iphone5_img#,
+		iphone6_img=#iphone6_img#,iphone6p_img=#iphone6p_img#,iphone7_img=#iphone7_img#,iphone7p_img=#iphone7p_img#,delete_status = 1
 		WHERE id=#id#
 	</update>
 </sqlMap> 

@@ -307,9 +307,9 @@ function load(){
 			onclick="show(this)">Banner
 		<input type="radio" name="img_Type" id="3" value="3"
 			onclick="show(this)">图标
-	  	<input type="radio" name="img_Type" id="4" value="4"
+<!--	  	<input type="radio" name="img_Type" id="4" value="4"
 			onclick="show(this)">闪屏
-<!-- 		<input type="radio" name="img_Type" id="5" value="5"
+ 		<input type="radio" name="img_Type" id="5" value="5"
 			onclick="show(this)">gym -->
 	
 		<div id="c" style="margin: 20px; border: 2px; display: none">

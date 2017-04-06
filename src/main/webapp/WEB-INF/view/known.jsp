@@ -39,8 +39,9 @@
 						<th width="6%">推荐</th>
 						<th width="10%">标题</th>
 						<th width="10%">标签</th>
-						<th width="20%">URL</th>
-						<th width="33%">推荐图片</th>	
+						<th width="12%">URL</th>
+						<th width="20%">图片</th>	
+						<th width="20%">推荐图片</th>	
 						<th width="7%">上架</th>
 						<th width="10%">操作</th>	
 					</tr>
@@ -62,6 +63,7 @@
 							<td><c:out value = "${item.title}" /></td>
 							<td><c:out value = "${item.tab}" /></td>
 							<td><c:out value = "${item.url}" /></td>
+							<td><a href="${item.imgUrl}" target="_blank"><c:out value = "${item.img}" /></a></td>
 							<td><a href="${item.feedImgUrl}" target="_blank"><c:out value = "${item.feedImg}" /></a></td>
 							<td>
 								<c:if test="${item.shelves == 1}">

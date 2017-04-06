@@ -822,6 +822,25 @@ public class LoginDao {
 		log.info("SelectAllWelcomePhoto End.");
 		return welcomePhoto;
 	}
+	
+	// 20170327 Baojun Add
+	public static WelcomeIMG findWelcomeById(long id) throws SQLException {
+		log.info("findWelcomeById Start.");
+		WelcomeIMG welcomePhoto = null;
+		String sucflg = null;
+		try {
+			welcomePhoto = (WelcomeIMG) sqlMap.queryForObject("findWelcomeById", id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		sucflg = CommonConstant.FORWARD_SUCCESS;
+
+		log.info("findWelcomeById End.");
+		return welcomePhoto;
+	}
 
 	// 20170327 Baojun Add
 	public static String AddT_welcomePhoto(WelcomeIMG welcomePhoto) {
@@ -856,6 +875,24 @@ public class LoginDao {
 		sucflg = CommonConstant.FORWARD_SUCCESS;
 
 		log.info("insertWelcomePhoto End.");
+		return sucflg;
+	}
+	
+	// 20170327 Baojun Add
+	public static String updateWelcomeIMGByID(WelcomeIMG welcomePhoto) {
+		log.info("updateWelcomeIMGByID Start.");
+		String sucflg = null;
+		try {
+			sqlMap.update("updateWelcomeIMGByID", welcomePhoto);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+
+		}
+		sucflg = CommonConstant.FORWARD_SUCCESS;
+
+		log.info("updateWelcomeIMGByID End.");
 		return sucflg;
 	}
 

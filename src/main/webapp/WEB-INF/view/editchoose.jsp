@@ -13,7 +13,7 @@
 <SCRIPT Language="JavaScript">
 function onSubmit(cmd){
 		var form = document.forms[0];
-			form.action = "../choose_update/{id}";
+			form.action = "../choose_update";
 	
 		form.submit();
 
@@ -26,7 +26,7 @@ function onSubmit(cmd){
 </head>	
 <h2>编辑精选</h2>	
 <body>
-<form enctype="multipart/form-data" action="choose/choose_update/{id}" method="post">
+<form enctype="multipart/form-data" action="choose" method="post">
 		<table>	
 				<input type="hidden" name="id" value="${id}"/>
 				<input type="hidden" name="summary" value="${summary}"/>
@@ -49,12 +49,11 @@ function onSubmit(cmd){
 						id="url" size="35" maxlength="200" value="${url}" /></td>
 				</tr>
 				<tr>
-	                <td style="width: 70px">推荐图片:</td>			
-					<td>${feedimg}</td><td><input type="hidden" name="feedimg"
-						id="feedimg" value="${feedimg}" />
+	                <td style="width: 70px">图片:</td>			
+					<td>${img}</td>
 				</tr>
 				<tr>		
-					<td><input type="file" id="feedimg" name="feedimg" size="15" />				
+					<td><input type="file" id="imgfile" name="imgfile" size="25" />				
 				<tr>
 		</table>		
            <br> <input type="submit" value="保存" onclick="return onSubmit('Save');" class="input">

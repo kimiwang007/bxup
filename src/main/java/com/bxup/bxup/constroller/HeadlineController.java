@@ -107,51 +107,8 @@ static Logger log = Logger.getLogger(HeadlineController.class.getName());
 			Subscribe subscribe) throws SQLException {
 		log.info("updateHeadline called");
 
-		String imgtime = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
-
-		HashMap<String, String> filename = new HashMap<String, String>();
-		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-				request.getSession().getServletContext());
-
-		Properties properties = new Properties();
-		try {
-			properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		String picturepositiontmp = properties.getProperty("pictureposition");
-		if (multipartResolver.isMultipart(request)) {
-			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-			Iterator<?> iter = multiRequest.getFileNames();
-
-			while (iter.hasNext()) {
-				StringBuilder filenamesave = new StringBuilder();
-				MultipartFile file = multiRequest.getFile(iter.next().toString());
-				String picturename = file.getOriginalFilename();
-				int position = picturename.indexOf(CommonConstant.POINT);
-				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
-					filenamesave.append(file.getName());
-					filenamesave.append(CommonConstant.UNDERLINE);
-					filenamesave.append(picturename.substring(0, position));
-					filenamesave.append(imgtime);
-					filenamesave.append(picturename.substring(position));
-					//
-					filename.put(file.getName(), filenamesave.toString());
-					String path = picturepositiontmp + filenamesave.toString();
-					try {
-						file.transferTo(new File(path));
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				subscribe.setImg(picturename);
-			}
-		}
+		Date d = new Date();
+		subscribe.setPublish_time(d);
 		
 		subscribeService.updateKnownById(subscribe);
 

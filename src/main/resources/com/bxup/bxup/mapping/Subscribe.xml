@@ -42,7 +42,7 @@
 	</update>
 	<update id="updateKnownById" parameterClass="SubscribeForm"> 
 		update t_subscribe 
-		SET title=#title#,tab=#tab#,url=#url#,img=#img#,feedImg=#feedImg#,publish_time=#publish_time#,
+		SET title=#title#,tab=#tab#,url=#url#,img=#img#,publish_time=#publish_time#,
 		subscribe_type=#subscribe_type#,status=#status#
 		WHERE id=#id#
 	</update>

@@ -12,4 +12,6 @@ public interface WelcomeImgService {
 	String insertWelcomePhoto(WelcomeIMG welcomePhoto);
 	String updateWelcomePhoto(WelcomeIMG welcomePhoto);
 	boolean updateshelves(WelcomeIMG welcomePhoto) throws SQLException;
+	String updateWelcomeIMGByID(WelcomeIMG welcomePhoto) throws SQLException;
+	WelcomeIMG findWelcomeById(Long id) throws SQLException;
 }

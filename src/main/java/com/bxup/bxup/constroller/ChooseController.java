@@ -54,6 +54,9 @@ static Logger log = Logger.getLogger(ChooseController.class.getName());
 		
 		for(int i=0;i<subscribe.size();i++){
 			if(subscribe.get(i).getSubscribe_type() == 3){
+				if(subscribe.get(i).getImg() != null){
+					subscribe.get(i).setImgUrl(picture_url + "/" + subscribe.get(i).getImg());
+				}
 				if(subscribe.get(i).getFeedImg() != null){
 					subscribe.get(i).setFeedImgUrl(picture_url + "/" + subscribe.get(i).getFeedImg());
 				}
@@ -170,8 +173,7 @@ static Logger log = Logger.getLogger(ChooseController.class.getName());
 		model.addAttribute("id", subscribe.getId());
 		model.addAttribute("tab", subscribe.getTab());
 		model.addAttribute("title", subscribe.getTitle());
-		model.addAttribute("feedimgurl", subscribe.getFeedImgUrl());
-		model.addAttribute("feedimg", subscribe.getFeedImg());
+		model.addAttribute("img", subscribe.getImg());
 		model.addAttribute("url", subscribe.getUrl());
 		model.addAttribute("summary", subscribe.getSummary());
 		model.addAttribute("publish_time", subscribe.getPublish_time());
@@ -191,16 +193,12 @@ static Logger log = Logger.getLogger(ChooseController.class.getName());
 		return "redirect:/choose";
 	}
 
-	@RequestMapping(value = "/choose_update/{id}", method = RequestMethod.POST)
-	public String updateevent(@PathVariable String id, HttpServletRequest request, HttpServletResponse response,
+	@RequestMapping(value = "/choose_update", method = RequestMethod.POST)
+	public String updateevent(HttpServletRequest request, HttpServletResponse response,
 			Subscribe subscribe) throws SQLException {
 		log.info("updateChoose called");
 
 		String imgtime = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
-
-		HashMap<String, String> filename = new HashMap<String, String>();
-		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
-				request.getSession().getServletContext());
 
 		Properties properties = new Properties();
 		try {
@@ -210,37 +208,34 @@ static Logger log = Logger.getLogger(ChooseController.class.getName());
 			e.printStackTrace();
 		}
 		String picturepositiontmp = properties.getProperty("pictureposition");
-		if (multipartResolver.isMultipart(request)) {
-			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-			Iterator<?> iter = multiRequest.getFileNames();
-
-			while (iter.hasNext()) {
-				StringBuilder filenamesave = new StringBuilder();
-				MultipartFile file = multiRequest.getFile(iter.next().toString());
-				String picturename = file.getOriginalFilename();
-				int position = picturename.indexOf(CommonConstant.POINT);
-				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
-					filenamesave.append(file.getName());
-					filenamesave.append(CommonConstant.UNDERLINE);
-					filenamesave.append(picturename.substring(0, position));
-					filenamesave.append(imgtime);
-					filenamesave.append(picturename.substring(position));
-					//
-					filename.put(file.getName(), filenamesave.toString());
-					String path = picturepositiontmp + filenamesave.toString();
-					try {
-						file.transferTo(new File(path));
-					} catch (IllegalStateException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-				subscribe.setImg(picturename);
+		
+		//pic1
+		MultipartFile file = subscribe.getImgfile();
+		StringBuilder filenamesave = new StringBuilder();
+		int position = 0;		
+		String picturename = file.getOriginalFilename();
+		position = picturename.indexOf(CommonConstant.POINT);
+		filenamesave =  new StringBuilder();
+		if (file != null && file.getOriginalFilename() != CommonConstant.BLANK){
+			filenamesave.append(file.getName());
+			filenamesave.append(CommonConstant.UNDERLINE);
+			filenamesave.append(picturename.substring(0, position));
+			filenamesave.append(imgtime);
+			filenamesave.append(picturename.substring(position));
+			String path = picturepositiontmp + filenamesave.toString();			
+			
+			try {
+				file.transferTo(new File(path));
+				subscribe.setImg(filenamesave.toString());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
 			}
 		}
+		
+		Date d = new Date();
+		subscribe.setPublish_time(d);
 		
 		subscribeService.updateKnownById(subscribe);
 

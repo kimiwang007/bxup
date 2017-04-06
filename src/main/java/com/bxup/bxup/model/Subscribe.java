@@ -2,6 +2,8 @@ package com.bxup.bxup.model;
 
 import java.util.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Subscribe {
 
 	private Integer id;
@@ -16,6 +18,10 @@ public class Subscribe {
 
 	private String img;
 
+	private String imgUrl;
+	
+	private MultipartFile imgfile;
+	
 	private String feedImg;
 	
 	private String feedImgUrl;
@@ -94,6 +100,22 @@ public class Subscribe {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
+
+	public MultipartFile getImgfile() {
+		return imgfile;
+	}
+
+	public void setImgfile(MultipartFile imgfile) {
+		this.imgfile = imgfile;
 	}
 
 	public String getFeedImg() {
