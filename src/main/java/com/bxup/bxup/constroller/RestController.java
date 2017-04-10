@@ -408,9 +408,13 @@ public class RestController {
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
 				request.getSession().getServletContext());
 
+		int position = 0;
+		String imgtime = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+		StringBuilder filenamesave = new StringBuilder();
+		
 		Properties properties = new Properties();
 		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
-		String picturepositiontmp = properties.getProperty("gympictureposition");
+		String picturepositiontmp = properties.getProperty("pictureposition");
 		if (multipartResolver.isMultipart(request)) {
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			Iterator<?> iter = multiRequest.getFileNames();
@@ -418,16 +422,21 @@ public class RestController {
 
 				MultipartFile file = multiRequest.getFile(iter.next().toString());
 				String picturename = file.getOriginalFilename();
-				subscribeForm.setImg(picturename);
-//				subscribeForm.setFeedImg(picturename);
+				filenamesave.append(picturename.substring(0, position));
+				filenamesave.append(imgtime);
+				filenamesave.append(picturename.substring(position));
+				subscribeForm.setImg(filenamesave.toString());
 				if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
-					String path = picturepositiontmp + picturename;
+					String path = picturepositiontmp + filenamesave.toString();
 					file.transferTo(new File(path));
 				}
 			}
 		}
 		String sucflg = subscribeService.insertSubscribeInfo(subscribeForm);
 		if (sucflg.equals(CommonConstant.FORWARD_SUCCESS) && subscribeForm.getSubscribe_type() == 0) {
+			log.info("insertSubscribeInfo Success!");
+			return "redirect:/community";
+		} else if (sucflg.equals(CommonConstant.FORWARD_SUCCESS) && subscribeForm.getSubscribe_type() == 1) {
 			log.info("insertSubscribeInfo Success!");
 			return "redirect:/headline";
 		} else if (sucflg.equals(CommonConstant.FORWARD_SUCCESS) && subscribeForm.getSubscribe_type() == 2) {

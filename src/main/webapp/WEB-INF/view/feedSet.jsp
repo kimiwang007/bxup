@@ -16,6 +16,9 @@
 		<c:when test="${setType == 'known'}">
 			<h2>知道推荐图片设定</h2>
 		</c:when>
+		<c:when test="${setType == 'community'}">
+			<h2>社区推荐图片设定</h2>
+		</c:when>
 		<c:otherwise>
 			<h2>精选推荐图片设定</h2>
 		</c:otherwise>
@@ -82,6 +85,10 @@ function back(){
 	if($('#setType').val() == "known"){
 		if(window.confirm('是否返回知道列表 ?')){
 			javascript:window.location.href='/bxadmin/known'
+	    }
+	} else if($('#setType').val() == "community") {
+		if(window.confirm('是否返回社区列表 ?')){
+			javascript:window.location.href='/bxadmin/community'
 	    }
 	} else {		
 		if(window.confirm('是否返回精选列表 ?')){

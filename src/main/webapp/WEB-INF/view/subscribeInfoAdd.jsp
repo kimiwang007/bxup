@@ -61,6 +61,10 @@ function back(){
 		if(window.confirm('是否精选列表 ?')){
 			javascript:window.location.href='/bxadmin/choose';
 	    }
+	} else if(document.getElementById("subscribe_type").value == "0") {
+		if(window.confirm('是否社区列表 ?')){
+			javascript:window.location.href='/bxadmin/community';
+	    }
 	} else {
 		if(window.confirm('是否返回头条列表 ?')){
 			javascript:window.location.href='/bxadmin/headline';
@@ -86,8 +90,11 @@ function back(){
 						<c:when test="${subscribe_type =='headline'}">
 							<h2>新建头条</h2>
 						</c:when>
-						<c:otherwise>
+						<c:when test="${subscribe_type =='choose'}">
 							<h2>新建精选</h2>
+						</c:when>
+						<c:otherwise>
+							<h2>新建社区</h2>
 						</c:otherwise>
 					</c:choose></td>
 			</tr>
@@ -113,6 +120,11 @@ function back(){
 						<td colspan="2"><input type="file" id="knownpicture"
 							name="knownpicture" size="35" /></td>
 					</c:when>
+					<c:when test="${subscribe_type =='community'}">
+						<td>图片</td>
+						<td colspan="2"><input type="file" id="knownpicture"
+							name="knownpicture" size="35" /></td>
+					</c:when>
 					<c:when test="${subscribe_type =='choose'}">
 						<td>图片</td>
 						<td colspan="2"><input type="file" id="knownpicture"
@@ -127,10 +139,13 @@ function back(){
 					<input type="hidden" value="2" name="subscribe_type" id="subscribe_type">
 				</c:when>
 				<c:when test="${subscribe_type =='headline'}">
-					<input type="hidden" value="0" name="subscribe_type" id="subscribe_type">
+					<input type="hidden" value="1" name="subscribe_type" id="subscribe_type">
+				</c:when>
+				<c:when test="${subscribe_type =='choose'}">
+					<input type="hidden" value="3" name="subscribe_type" id="subscribe_type">
 				</c:when>
 				<c:otherwise>
-					<input type="hidden" value="3" name="subscribe_type" id="subscribe_type">
+					<input type="hidden" value="0" name="subscribe_type" id="subscribe_type">
 				</c:otherwise>
 			</c:choose>			
 			<input type="submit" value="上传" onclick="return onSubmit('Comfirm');" class="input"> 

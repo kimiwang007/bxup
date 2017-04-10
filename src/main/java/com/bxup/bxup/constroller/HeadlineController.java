@@ -45,7 +45,7 @@ static Logger log = Logger.getLogger(HeadlineController.class.getName());
 		List<Subscribe> headline = new ArrayList<Subscribe>();
 			
 		for(int i=0;i<subscribe.size();i++){		
-			if(subscribe.get(i).getSubscribe_type() == 0){
+			if(subscribe.get(i).getSubscribe_type() == 1){
 				headline.add(subscribe.get(i));
 				mode.put("headline", headline);
 			} else if (subscribe.get(i).getSubscribe_type() == null){

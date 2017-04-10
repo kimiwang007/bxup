@@ -41,8 +41,9 @@
 						<th width="8%">结束日期</th>
 						<th width="8%">开始时间</th>
 						<th width="14%">活动链接</th>
-						<th width="14%">活动简介</th>	
-						<th width="14%">活动地点</th>	
+						<th width="11%">活动简介</th>	
+						<th width="11%">活动地点</th>	
+						<th width="6%">分类</th>	
 						<th width="6%">上架</th>
 						<th width="10%">操作</th>			
 					</tr>
@@ -59,6 +60,19 @@
 							<td><c:out value = "${item.event_link}" /></td>							
 							<td><c:out value = "${item.event_desc}" /></td>
 							<td><c:out value = "${item.event_place}" /></td>
+							<td>
+								<c:choose>
+									<c:when test="${item.img_Type == 1}">
+										活动
+									</c:when>
+									<c:when test="${item.img_Type == 2}">
+										Banner
+									</c:when>
+									<c:when test="${item.img_Type == 3}">
+										图标
+									</c:when>
+								</c:choose>
+							</td>
 							<td>
 								<c:if test="${item.shelves == 1}">
 									<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='resources/event_shelves/${item.id}'" value="上架">

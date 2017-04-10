@@ -111,6 +111,15 @@
 		form.submit();
 		form.actionCmd.value = "";
     }
+	function onSubmit11(){
+		var form = document.forms[0];
+		
+		form.actionCmd.value = "Init";
+		form.target = "_top";
+		form.action = "./welcome11";
+		form.submit();
+		form.actionCmd.value = "";
+    }
 </script>
 </head>
 
@@ -157,6 +166,10 @@
 		<tr>	
 		<td><input type="hidden" id="actionCmd" name="actionCmd"></input> <a
 			href="#" onclick="onSubmit4();">客户反馈信息</a></td>	
+		</tr>
+		<tr>
+		<td><input type="hidden" id="actionCmd" name="actionCmd"></input> <a
+			href="#" onclick="onSubmit11();">社区一览</a></td>	
 		</tr>
 	</table>	
 	</form>

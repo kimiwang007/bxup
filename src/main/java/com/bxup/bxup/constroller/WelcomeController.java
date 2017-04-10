@@ -71,4 +71,9 @@ public class WelcomeController {
 		return "redirect:/welcomeimg";
 	}
 
+	@RequestMapping(value = "/welcome11", method = RequestMethod.GET)
+	public String community() {
+		log.info("WelcomePage called");
+		return "redirect:/community";
+	}
 }
