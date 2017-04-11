@@ -81,12 +81,14 @@ function onSubmit(cmd){
 						id="eventPlace" size="35" maxlength="45" value="${event_place}" /></td>
 				</tr>
 				<tr>
-	                <td style="width: 70px">当前iPhone4适用图片:</td>			
+	                <td style="width: 70px">当前适用图片:</td>			
 					<td>${iphone4_img}</td><td><input type="hidden" name="iphone4_img"
 						id="iphone4_img" value="${iphone4_img}" />
 				</tr>
 				<tr>		
-					<td><input type="file" id="iPhone4IMG" name="iPhone4IMG" size="15" />				
+					<td><input type="file" id="iPhone4IMG" name="iPhone4IMG" size="15" /></td>					
+				</tr>
+				<!-- 
 				<tr>
 					<td style="width: 70px">当前iPhone5适用图片:</td>	
 					<td>${iphone5_img}</td><td><input type="hidden" name="iphone5_img"
@@ -109,7 +111,7 @@ function onSubmit(cmd){
 				</tr>
 				<tr>
 					<td colspan="2"><input type="file" id="iPhone6PIMG" name="iPhone6PIMG" size="15" />
-				</tr> 
+				</tr>  -->			
 		</table>		
            <br> <input type="submit" value="保存" onclick="return onSubmit('Save');" class="input">
              	<input type="button"  class="blue_btn" value="返回" onclick="javascript:window.location.href='<%=basePath%>resources'"/>	

@@ -164,7 +164,7 @@ public class ResourceController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String picturepositiontmp = properties.getProperty("picturepositiontmp");
+		String picturepositiontmp = properties.getProperty("pictureposition");
 		if (multipartResolver.isMultipart(request)) {
 			MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 			Iterator<?> iter = multiRequest.getFileNames();
