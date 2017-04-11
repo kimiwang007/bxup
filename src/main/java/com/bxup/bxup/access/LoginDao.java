@@ -69,7 +69,7 @@ public class LoginDao {
 			eventAdd.setEventTime(eventInsertForm.getEventTime());
 			eventAdd.setCreateDate(eventInsertForm.getCreateDate());
 			eventAdd.setCreateID(eventInsertForm.getCreateID());
-			eventAdd.setDel_fg(eventInsertForm.getDel_fg());
+			eventAdd.setDeleteStatus(eventInsertForm.getDeleteStatus());
 			try {
 				sqlMap.insert("insertEventInsertForm1", eventAdd);
 			} catch (SQLException e) {

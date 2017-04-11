@@ -7,7 +7,7 @@
 	<!-- select -->
 	<select id="SelectAllsubscribe" resultClass="SubscribeForm">    
              select * from 
-             t_subscribe where status = 0
+             t_subscribe where delete_status = 1
 	</select>
 	<select id="SelectSubscribeForID" resultClass="SubscribeForm">    
              select * from 
@@ -16,8 +16,8 @@
 	<!-- insert -->
 	<insert id="insertSubscribeInfo" parameterClass="SubscribeForm">
 			insert into
-				t_subscribe(title,tab,url,img,publish_time,subscribe_type,feedImg,status)
-				values(#title#,#tab#,#url#,#img#,#publish_time#,#subscribe_type#,#feedImg#,0)
+				t_subscribe(title,tab,url,img,publish_time,subscribe_type,feedImg,delete_status)
+				values(#title#,#tab#,#url#,#img#,#publish_time#,#subscribe_type#,#feedImg#,1)
 	</insert>
 	<!-- update -->
 	<update id="updateFeedImgToNullByType" parameterClass="SubscribeForm">          
@@ -43,12 +43,12 @@
 	<update id="updateKnownById" parameterClass="SubscribeForm"> 
 		update t_subscribe 
 		SET title=#title#,tab=#tab#,url=#url#,img=#img#,publish_time=#publish_time#,
-		subscribe_type=#subscribe_type#,status=#status#
+		subscribe_type=#subscribe_type#,delete_status=#deleteStatus#
 		WHERE id=#id#
 	</update>
 	<update id="deleteKnownById" parameterClass="SubscribeForm"> 
 		update t_subscribe 
-		SET status= 1
+		SET delete_status= -1
 		WHERE id=#id#
 	</update>
 	

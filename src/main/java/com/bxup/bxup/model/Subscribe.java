@@ -26,7 +26,7 @@ public class Subscribe {
 	
 	private String feedImgUrl;
 
-	private Integer status;
+	private Integer deleteStatus;
 
 	private Integer subscribe_type;
 
@@ -34,12 +34,12 @@ public class Subscribe {
 
 	private Integer shelves;
 
-	public Integer getStatus() {
-		return status;
+	public Integer getDeleteStatus() {
+		return deleteStatus;
 	}
 
-	public void setStatus(Integer status) {
-		this.status = status;
+	public void setDeleteStatus(Integer status) {
+		this.deleteStatus = status;
 	}
 
 	public Integer getSubscribe_type() {

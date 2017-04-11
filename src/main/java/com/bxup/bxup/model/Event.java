@@ -82,7 +82,7 @@ public class Event {
 
 	private String id;
 
-	private String del_fg;
+	private String deleteStatus;
 
 	private int shelves;
 	
@@ -144,12 +144,12 @@ public class Event {
 		this.iphone6p_img = iphone6p_img;
 	}
 
-	public String getDel_fg() {
-		return del_fg;
+	public String getDeleteStatus() {
+		return deleteStatus;
 	}
 
-	public void setDel_fg(String del_fg) {
-		this.del_fg = del_fg;
+	public void setDeleteStatus(String deleteStatus) {
+		this.deleteStatus = deleteStatus;
 	}
 
 	public String getId() {

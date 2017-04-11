@@ -87,7 +87,7 @@ static Logger log = Logger.getLogger(HeadlineController.class.getName());
 		model.addAttribute("summary", subscribe.getSummary());
 		model.addAttribute("publish_time", subscribe.getPublish_time());
 		model.addAttribute("subscribe_type", subscribe.getSubscribe_type());
-		model.addAttribute("status", subscribe.getStatus());
+		model.addAttribute("status", subscribe.getDeleteStatus());
 
 		return "editheadline";
 	}
