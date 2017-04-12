@@ -7,7 +7,7 @@
 	<!-- select -->
 	<select id="selectAllEvent" resultClass="Event">    
              select * from 
-             t_event where delete_status=0 ORDER BY id DESC
+             t_event where delete_status = 1 ORDER BY id DESC
 	</select>
 	<select id="selectEventById" resultClass="Event">    
              select * from 
@@ -37,7 +37,7 @@
 	<!-- update -->
 	<update id="deleteEventById" parameterClass="Event">          
 			update t_event  
-			SET delete_status=1
+			SET delete_status=-1
 			WHERE id=#id# 
 	</update>
 	<update id="updateEventById" parameterClass="Event">          
