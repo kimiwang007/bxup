@@ -4,7 +4,6 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.bxup.bxup.controller.client.dto.GymDto;
-import com.bxup.bxup.model.Event;
 import com.bxup.bxup.model.Gym;
 import com.bxup.bxup.model.GymPhoto;
 

@@ -22,7 +22,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.bxup.bxup.common.constant.CommonConstant;
 import com.bxup.bxup.controller.client.dto.GymDto;
-import com.bxup.bxup.model.Event;
 import com.bxup.bxup.model.Gym;
 import com.bxup.bxup.model.GymPhoto;
 import com.bxup.bxup.service.GymService;

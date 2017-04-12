@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bxup.bxup.common.constant.CommonConstant;
-import com.bxup.bxup.model.Event;
-import com.bxup.bxup.model.Subscribe;
 import com.bxup.bxup.model.WelcomeIMG;
 import com.bxup.bxup.service.WelcomeImgService;
 

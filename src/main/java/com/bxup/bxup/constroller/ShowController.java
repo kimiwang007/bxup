@@ -15,9 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bxup.bxup.controller.client.dto.ShowDto;
-
-
-import com.bxup.bxup.model.Show;
 import com.bxup.bxup.service.ShowService;
 
 @Controller

@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -24,12 +22,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.bxup.bxup.common.constant.CommonConstant;
 import com.bxup.bxup.model.FeedImgSave;
-import com.bxup.bxup.model.GymPhoto;
 import com.bxup.bxup.model.Subscribe;
 import com.bxup.bxup.service.SubscribeService;
 
@@ -48,19 +43,18 @@ public class CommunityController {
 		List<Subscribe> community = new ArrayList<Subscribe>();
 
 		Properties properties = new Properties();
-		properties.load(this.getClass().getClassLoader()
-				.getResourceAsStream("Webinfo.properties"));
+		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
 
 		String picture_url = properties.getProperty("picture_url");
-		
+
 		for (int i = 0; i < subscribe.size(); i++) {
 			if (subscribe.get(i).getSubscribe_type() == 0) {
-				if(subscribe.get(i).getImg() != null){
+				if (subscribe.get(i).getImg() != null) {
 					subscribe.get(i).setImgUrl(picture_url + "/" + subscribe.get(i).getImg());
 				}
-				if(subscribe.get(i).getFeedImg() != null){
+				if (subscribe.get(i).getFeedImg() != null) {
 					subscribe.get(i).setFeedImgUrl(picture_url + "/" + subscribe.get(i).getFeedImg());
-				}				
+				}
 				community.add(subscribe.get(i));
 				mode.put("community", community);
 			}
@@ -93,21 +87,20 @@ public class CommunityController {
 		String imgtime = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 		Properties properties = new Properties();
 		try {
-			properties.load(this.getClass().getClassLoader()
-					.getResourceAsStream("Webinfo.properties"));
+			properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		// old feedImg clear
 		subscribe.setSubscribe_type(2);
 		boolean reval = subscribeService.UpdateFeedImgToNullByType(subscribe);
 		if (!reval) {
 			return "failure";
 		}
-		
-		//new feedImg set
+
+		// new feedImg set
 		String pictureposition = properties.getProperty("feedpictureposition");
 
 		for (int i = 0; i < feedImgData.getItmeID().size(); i++) {
@@ -136,17 +129,17 @@ public class CommunityController {
 					e.printStackTrace();
 				}
 			}
-			
+
 			subscribe.setSubscribe_type(0);
 			reval = subscribeService.UpdateFeedImgByid(subscribe);
 			if (!reval) {
 				return "failure";
 			}
 		}
-		
+
 		return "redirect:/community";
 	}
-	
+
 	@RequestMapping(value = "/Community_shelves/{id}", method = RequestMethod.GET)
 	public String setShelves(Model model, @PathVariable int id) throws SQLException {
 		log.info("communitysetShelves called");
@@ -154,7 +147,7 @@ public class CommunityController {
 		subUpdateForm.setId(id);
 		subUpdateForm.setSubscribe_type(2);
 		boolean reval = subscribeService.updateshelves(subUpdateForm);
-		if(reval){
+		if (reval) {
 			log.info("communitysetShelves end");
 		} else {
 			log.info("communitysetShelves failure");
@@ -162,11 +155,10 @@ public class CommunityController {
 		}
 		return "redirect:/community";
 	}
-	
-	
+
 	@RequestMapping(value = "community_edit/{id}", method = RequestMethod.GET)
 	public String editcommunity(@PathVariable String id, Model model) throws Exception {
-		
+
 		log.info("editcommunity called");
 		Subscribe subscribe = subscribeService.findKnownById(id);
 
@@ -182,8 +174,7 @@ public class CommunityController {
 
 		return "editcommunity";
 	}
-	
-	
+
 	@RequestMapping(value = "/community_delete/{id}", method = RequestMethod.GET)
 	public String delete(@PathVariable String id, Map<String, Object> model) throws Exception {
 
@@ -194,8 +185,8 @@ public class CommunityController {
 	}
 
 	@RequestMapping(value = "/community_update", method = RequestMethod.POST)
-	public String updateCommunity(HttpServletRequest request, HttpServletResponse response,
-			Subscribe subscribe) throws SQLException {
+	public String updateCommunity(HttpServletRequest request, HttpServletResponse response, Subscribe subscribe)
+			throws SQLException {
 		log.info("updatecommunity called");
 
 		String imgtime = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
@@ -208,22 +199,22 @@ public class CommunityController {
 			e.printStackTrace();
 		}
 		String picturepositiontmp = properties.getProperty("pictureposition");
-		
-		//pic1
+
+		// pic1
 		MultipartFile file = subscribe.getImgfile();
 		StringBuilder filenamesave = new StringBuilder();
-		int position = 0;		
+		int position = 0;
 		String picturename = file.getOriginalFilename();
 		position = picturename.indexOf(CommonConstant.POINT);
-		filenamesave =  new StringBuilder();
-		if (file != null && file.getOriginalFilename() != CommonConstant.BLANK){
+		filenamesave = new StringBuilder();
+		if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
 			filenamesave.append(file.getName());
 			filenamesave.append(CommonConstant.UNDERLINE);
 			filenamesave.append(picturename.substring(0, position));
 			filenamesave.append(imgtime);
 			filenamesave.append(picturename.substring(position));
-			String path = picturepositiontmp + filenamesave.toString();			
-			
+			String path = picturepositiontmp + filenamesave.toString();
+
 			try {
 				file.transferTo(new File(path));
 				subscribe.setImg(filenamesave.toString());
@@ -233,16 +224,13 @@ public class CommunityController {
 				e.printStackTrace();
 			}
 		}
-		
+
 		Date d = new Date();
 		subscribe.setPublish_time(d);
-		
+
 		subscribeService.updateKnownById(subscribe);
 
 		return "redirect:/community";
 	}
-	
-	
-	
-	
+
 }

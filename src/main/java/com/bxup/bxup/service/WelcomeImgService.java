@@ -3,7 +3,6 @@ package com.bxup.bxup.service;
 import java.sql.SQLException;
 import java.util.List;
 
-import com.bxup.bxup.model.Subscribe;
 import com.bxup.bxup.model.WelcomeIMG;
 
 public interface WelcomeImgService {

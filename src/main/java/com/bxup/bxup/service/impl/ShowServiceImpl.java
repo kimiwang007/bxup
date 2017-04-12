@@ -1,8 +1,6 @@
 package com.bxup.bxup.service.impl;
 
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
