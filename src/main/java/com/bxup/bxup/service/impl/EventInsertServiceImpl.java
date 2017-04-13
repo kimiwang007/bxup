@@ -56,7 +56,7 @@ public class EventInsertServiceImpl implements EventInsertService {
 
 				eventInsertForm.setiPhone6IMGName(eventInsertForm.getiPhone6IMGName());
 				eventInsertForm.setiPhone6PIMGName(eventInsertForm.getiPhone6PIMGName());
-				eventInsertForm.setDeleteStatus("0");
+				eventInsertForm.setDeleteStatus("1");
 
 			} else if (img_type.equals(ImgtypeEnum.STRING_ICON.getStringValue())) {
 
