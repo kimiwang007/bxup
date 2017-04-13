@@ -59,11 +59,15 @@ public class GymController {
 				}
 				gymdto = new GymDto();
 				gymdto = gym.get(i);
-				if (gym.get(i).getApproved() == 1) {
-					gymdto.setApprovedfg("通过");
-				} else {
+				if (gym.get(i).getApproved() == null){
 					gymdto.setApprovedfg("未通过");
-				}
+				} else {
+					if (gym.get(i).getApproved() == 1) {
+						gymdto.setApprovedfg("通过");
+					} else {
+						gymdto.setApprovedfg("未通过");
+					}
+				}				
 				gymdto.setGympictureName1(gym.get(i).getPhoto());
 				gymdto.setGympicture1(picture_url + "/" + gym.get(i).getPhoto());
 				imgcount = 2;

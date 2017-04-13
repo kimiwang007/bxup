@@ -64,17 +64,26 @@ public class CoachController {
 				coachdto = new CoachDto();
 				coachdto = coach.get(i);
 
-				if (coach.get(i).getGendar() == 1) {
-					coachdto.setSex("男");
+				if (coach.get(i).getGendar() == null){
+					coachdto.setSex("");
 				} else {
-					coachdto.setSex("女");
-				}
-				if (coach.get(i).getApproved() == 1) {
-					coachdto.setApprovedfg("通过");
-				} else {
+					if (coach.get(i).getGendar() == 1) {
+						coachdto.setSex("男");
+					} else {
+						coachdto.setSex("女");
+					}
+				}				
+				
+				if (coach.get(i).getApproved() == null){
 					coachdto.setApprovedfg("未通过");
+				} else {
+					if (coach.get(i).getApproved() == 1) {
+						coachdto.setApprovedfg("通过");
+					} else {
+						coachdto.setApprovedfg("未通过");
+					}
 				}
-
+				
 				coachdto.setPictureurl(picture_url + "/" + coach.get(i).getAvatar());
 
 				coachdto.setPictureName1(coach.get(i).getPhoto());
