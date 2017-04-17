@@ -24,14 +24,22 @@
 		<result column="tag" property="tag" jdbcType="VARCHAR" />
 		<result column="hot" property="hot" jdbcType="BIGINT" />
 		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="photo_id" property="photo_id" jdbcType="BIGINT" />
 	</resultMap>
 	<!-- select -->
 	<select id="selectAllCoach" resultMap="DtoResultMap">
 		select c.id id,c.name,c.avatar,g.name gym_name,c.create_time,c.approved,c.gendar,c.age,
-		c.genius,c.honor,c.profile,c.user_id,c.province,c.address,c.city,c.tag,c.hot,rel.photo
-		from t_coach c left join t_coach_photo_rel rel on c.id = rel.coach_id
+		c.genius,c.honor,c.profile,c.user_id,c.province,c.address,c.city,c.tag,c.hot,rel.photo,rel.id photo_id
+		from t_coach c left join t_coach_photo_rel rel on c.id = rel.coach_id and rel.delete_status = 1
 		left join t_gym g on c.gym_id = g.id
 		where c.delete_status = 1 order by c.id DESC
+	</select>
+	<select id="findCoachForId" resultMap="DtoResultMap">
+		select c.id id,c.name,c.avatar,g.name gym_name,c.create_time,c.approved,c.gendar,c.age,
+		c.genius,c.honor,c.profile,c.user_id,c.province,c.address,c.city,c.tag,c.hot,rel.photo,rel.id photo_id
+		from t_coach c left join t_coach_photo_rel rel on c.id = rel.coach_id and rel.delete_status = 1
+		left join t_gym g on c.gym_id = g.id
+		where c.delete_status = 1 and c.id = #id# order by c.id DESC
 	</select>
 	<!-- insert -->
 	<insert id="insertCoachInfoForm" parameterClass="Coach">
@@ -42,6 +50,18 @@
 			select LAST_INSERT_ID() as value     
 		</selectKey>
 	</insert>
+	<!-- update -->
+	<update id="updateCoachById" parameterClass="Coach"> 
+		update t_coach 
+		SET avatar=#avatar#,gym_id=#gym_id#,create_time=#create_time#,approved=#approved#,gendar=#gendar#,
+		age=#age#,province=#province#,address=#address#,city=#city#,genius=#genius#,honor=#honor#,profile=#profile#,tag=#tag#,hot=#hot#
+		WHERE id=#id#
+	</update>
+	<update id="deleteCoachById" parameterClass="Coach">          
+		update t_coach  
+		SET delete_status=-1
+		WHERE id=#id# 
+	</update>
 	<!-- delete -->
 	<delete id="deleteCoachInfoForm" parameterClass="Coach">
 	</delete>

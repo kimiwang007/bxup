@@ -3,14 +3,25 @@ package com.bxup.bxup.model;
 
 public class CoachPhoto {
 	
+	private Long id;
+	
 	private int coach_id;
 	
 	private int type;	
 	
 	private String photo;
 	
+	private String photoName;
+	
 	private int delete_status;
 
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public int getCoach_id() {
 		return coach_id;
 	}
@@ -28,6 +39,12 @@ public class CoachPhoto {
 	}
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}	
+	public String getPhotoName() {
+		return photoName;
+	}
+	public void setPhotoName(String photoName) {
+		this.photoName = photoName;
 	}
 	public int getDelete_status() {
 		return delete_status;

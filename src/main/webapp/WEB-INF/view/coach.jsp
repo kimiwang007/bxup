@@ -100,6 +100,11 @@ $(document).ready(function() {
 		"autoWidth": true
 	} );
 } );
+function delConfirm(itemId){	
+	if(window.confirm('确定要删除该教练吗?')){
+		javascript:window.location.href='coach/coach_delete/' + itemId
+    }
+}
 function back(){
 	if(window.confirm('是否返回导航画面 ?')){
 		javascript:window.location.href='/bxadmin'

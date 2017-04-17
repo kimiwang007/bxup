@@ -28,6 +28,12 @@
 		from t_gym g left join t_gym_photo_rel rel on g.id = rel.gym_id
 		where g.delete_status = 1 order by g.id DESC
 	</select>
+	<select id="findGymForId" resultMap="DtoResultMap">
+		select g.id id,g.name,g.avatar,g.create_time,g.approved,g.profile,g.address,
+		g.tel,g.user_id,g.province,g.shelves,g.city,g.tag,g.hot,rel.photo
+		from t_gym g left join t_gym_photo_rel rel on g.id = rel.gym_id
+		where g.delete_status = 1 and g.id = #id# order by g.id DESC
+	</select>
 	<select id="selectAllGymName" resultClass="Gym">
 		select * from t_gym 
 		where delete_status = 1 order by id
@@ -54,6 +60,17 @@
 	<update id="updateGymshelves" parameterClass="Gym"> 
 		update t_gym 
 		SET shelves= shelves * -1
+		WHERE id=#id# 
+	</update>
+	<update id="updateGymById" parameterClass="Coach"> 
+		update t_gym 
+		SET avatar=#avatar#,create_time=#create_time#,approved=#approved#,province=#province#,
+		address=#address#,city=#city#,tel=#tel#,profile=#profile#,tag=#tag#,hot=#hot#
+		WHERE id=#id#
+	</update>
+	<update id="deleteGymById" parameterClass="Coach">          
+		update t_gym  
+		SET delete_status=-1
 		WHERE id=#id# 
 	</update>
 </sqlMap> 

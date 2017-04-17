@@ -50,15 +50,35 @@ public class Coach {
 	
 	private MultipartFile photo;
 	
+	private Long photo1_id;
+	
 	private MultipartFile picture1;
+	
+	private String pictureName1;
+	
+	private Long photo2_id;
 	
 	private MultipartFile picture2;
 	
+	private String pictureName2;
+	
+	private Long photo3_id;
+	
 	private MultipartFile picture3;
+	
+	private String pictureName3;
+	
+	private Long photo4_id;
 	
 	private MultipartFile picture4;
 	
+	private String pictureName4;
+	
+	private Long photo5_id;
+	
 	private MultipartFile picture5;
+	
+	private String pictureName5;
 	
 	public int getHot() {
 		return hot;
@@ -227,6 +247,66 @@ public class Coach {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	public String getPictureName1() {
+		return pictureName1;
+	}
+	public void setPictureName1(String pictureName1) {
+		this.pictureName1 = pictureName1;
+	}
+	public String getPictureName2() {
+		return pictureName2;
+	}
+	public void setPictureName2(String pictureName2) {
+		this.pictureName2 = pictureName2;
+	}
+	public String getPictureName3() {
+		return pictureName3;
+	}
+	public void setPictureName3(String pictureName3) {
+		this.pictureName3 = pictureName3;
+	}
+	public String getPictureName4() {
+		return pictureName4;
+	}
+	public void setPictureName4(String pictureName4) {
+		this.pictureName4 = pictureName4;
+	}
+	public String getPictureName5() {
+		return pictureName5;
+	}
+	public void setPictureName5(String pictureName5) {
+		this.pictureName5 = pictureName5;
+	}
+	public Long getPhoto1_id() {
+		return photo1_id;
+	}
+	public void setPhoto1_id(Long photo1_id) {
+		this.photo1_id = photo1_id;
+	}
+	public Long getPhoto2_id() {
+		return photo2_id;
+	}
+	public void setPhoto2_id(Long photo2_id) {
+		this.photo2_id = photo2_id;
+	}
+	public Long getPhoto3_id() {
+		return photo3_id;
+	}
+	public void setPhoto3_id(Long photo3_id) {
+		this.photo3_id = photo3_id;
+	}
+	public Long getPhoto4_id() {
+		return photo4_id;
+	}
+	public void setPhoto4_id(Long photo4_id) {
+		this.photo4_id = photo4_id;
+	}
+	public Long getPhoto5_id() {
+		return photo5_id;
+	}
+	public void setPhoto5_id(Long photo5_id) {
+		this.photo5_id = photo5_id;
 	}
 	
 }

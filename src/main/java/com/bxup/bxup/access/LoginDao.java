@@ -335,6 +335,103 @@ public class LoginDao {
 		return sucflg;
 	}
 
+	public static List<CoachDto> FindCoachById(String id) throws SQLException {
+		log.info("FindCoachById Start.");
+		List<CoachDto> coachInfoForm = null;
+		String sucflg = null;
+		try {
+			coachInfoForm = sqlMap.queryForList("findCoachForId", id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		sucflg = CommonConstant.FORWARD_SUCCESS;
+		log.info("SqlselectEventById End.");
+		return coachInfoForm;
+	}
+	
+	public String updateCoachById(Coach coachInfoForm) throws SQLException {
+		log.info("updateCoachById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("updateCoachById", coachInfoForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("updateCoachById End.");
+			flag = true;
+		}
+		return sucflg;
+	}
+	
+	public String updateCoachPhotoById(CoachPhoto coachPhotoForm) throws SQLException {
+		log.info("updateCoachPhotoById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("updateCoachPhotoById", coachPhotoForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("updateCoachPhotoById End.");
+			flag = true;
+		}
+		return sucflg;
+	}
+	
+	public String deleteCoachPhotoById(CoachPhoto coachPhotoForm) throws SQLException {
+		log.info("deleteCoachPhotoById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("deleteCoachPhotoById", coachPhotoForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("deleteCoachPhotoById End.");
+			flag = true;
+		}
+		return sucflg;
+	}
+	
+	public String deleteCoachById(Coach coachInfoForm) throws SQLException {
+		log.info("deleteCoachById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("deleteCoachById", coachInfoForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("deleteCoachById End.");
+			flag = true;
+		}
+		return sucflg;
+	}
+	
 	// 20170304 Baojun ADD
 	public static String AddT_gym(Gym gymInfoForm) {
 		log.info("SqlAddT_gym Start.");
@@ -369,6 +466,23 @@ public class LoginDao {
 		}
 		sucflg = CommonConstant.FORWARD_SUCCESS;
 		return sucflg;
+	}
+	
+	public static List<GymDto> FindGymById(String id) throws SQLException {
+		log.info("FindGymById Start.");
+		List<GymDto> gymForm = null;
+		String sucflg = null;
+		try {
+			gymForm = sqlMap.queryForList("findGymForId", id);
+		} catch (SQLException e) {
+			e.printStackTrace();
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		sucflg = CommonConstant.FORWARD_SUCCESS;
+		log.info("SqlselectEventById End.");
+		return gymForm;
 	}
 
 	// 20170304 Baojun Add
