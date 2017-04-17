@@ -36,21 +36,33 @@ public class GymDto {
 	
 	private String photo;
 	
+	private Long photo_id;
+	
+	private Long photo1_id;
+	
 	private String gympicture1;
 	
 	private String gympictureName1;
+	
+	private Long photo2_id;
 	
 	private String gympicture2;
 	
 	private String gympictureName2;
 	
+	private Long photo3_id;
+	
 	private String gympicture3;
 	
 	private String gympictureName3;
 	
+	private Long photo4_id;
+	
 	private String gympicture4;
 	
 	private String gympictureName4;
+	
+	private Long photo5_id;
 	
 	private String gympicture5;
 	
@@ -271,6 +283,54 @@ public class GymDto {
 
 	public void setGympictureName5(String gympictureName5) {
 		this.gympictureName5 = gympictureName5;
+	}
+
+	public Long getPhoto_id() {
+		return photo_id;
+	}
+
+	public void setPhoto_id(Long photo_id) {
+		this.photo_id = photo_id;
+	}
+
+	public Long getPhoto1_id() {
+		return photo1_id;
+	}
+
+	public void setPhoto1_id(Long photo1_id) {
+		this.photo1_id = photo1_id;
+	}
+
+	public Long getPhoto2_id() {
+		return photo2_id;
+	}
+
+	public void setPhoto2_id(Long photo2_id) {
+		this.photo2_id = photo2_id;
+	}
+
+	public Long getPhoto3_id() {
+		return photo3_id;
+	}
+
+	public void setPhoto3_id(Long photo3_id) {
+		this.photo3_id = photo3_id;
+	}
+
+	public Long getPhoto4_id() {
+		return photo4_id;
+	}
+
+	public void setPhoto4_id(Long photo4_id) {
+		this.photo4_id = photo4_id;
+	}
+
+	public Long getPhoto5_id() {
+		return photo5_id;
+	}
+
+	public void setPhoto5_id(Long photo5_id) {
+		this.photo5_id = photo5_id;
 	}
 	
 }

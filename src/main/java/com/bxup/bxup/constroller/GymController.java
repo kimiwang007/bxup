@@ -21,7 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.bxup.bxup.common.constant.CommonConstant;
+import com.bxup.bxup.controller.client.dto.CoachDto;
 import com.bxup.bxup.controller.client.dto.GymDto;
+import com.bxup.bxup.model.Coach;
+import com.bxup.bxup.model.CoachPhoto;
 import com.bxup.bxup.model.Gym;
 import com.bxup.bxup.model.GymPhoto;
 import com.bxup.bxup.service.GymService;
@@ -125,14 +128,7 @@ public class GymController {
 		int position = 0;
 		String imgtime = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 
-		gymInfoForm.setDelete_status(1);
-		String sucflg = gymInfoService.insertGymInfo(gymInfoForm);
-		int gymID = 0;
-		if (sucflg.equals(CommonConstant.FORWARD_FAILURE)) {
-			return CommonConstant.FORWARD_FAILURE;
-		} else {
-			gymID = Integer.valueOf(sucflg);
-		}
+		gymInfoForm.setDelete_status(1);		
 
 		// pic1
 		MultipartFile file = gymInfoForm.getGympicture1();
@@ -151,9 +147,10 @@ public class GymController {
 			try {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
-				gymPhoto.setGym_id(gymID);
+				//gymPhoto.setGym_id(gymID);
 				gymPhoto.setDelete_status(1);
 				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -178,9 +175,10 @@ public class GymController {
 			try {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
-				gymPhoto.setGym_id(gymID);
+				//gymPhoto.setGym_id(gymID);
 				gymPhoto.setDelete_status(1);
 				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -205,9 +203,10 @@ public class GymController {
 			try {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
-				gymPhoto.setGym_id(gymID);
+				//gymPhoto.setGym_id(gymID);
 				gymPhoto.setDelete_status(1);
 				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -232,9 +231,10 @@ public class GymController {
 			try {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
-				gymPhoto.setGym_id(gymID);
+				//gymPhoto.setGym_id(gymID);
 				gymPhoto.setDelete_status(1);
 				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -259,9 +259,10 @@ public class GymController {
 			try {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
-				gymPhoto.setGym_id(gymID);
+				//gymPhoto.setGym_id(gymID);
 				gymPhoto.setDelete_status(1);
 				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -269,8 +270,17 @@ public class GymController {
 			}
 		}
 
+		String sucflg = gymInfoService.insertGymInfo(gymInfoForm);
+		int gymID = 0;
+		if (sucflg.equals(CommonConstant.FORWARD_FAILURE)) {
+			return CommonConstant.FORWARD_FAILURE;
+		} else {
+			gymID = Integer.valueOf(sucflg);
+		}
+		
 		String ucfflg = null;
 		for (GymPhoto gp : gymPhotos) {
+			gp.setGym_id(gymID);
 			ucfflg = gymInfoService.insertGymPhoto(gp);
 			if (ucfflg.equals(CommonConstant.FORWARD_FAILURE)) {
 				return CommonConstant.FORWARD_FAILURE;
@@ -292,6 +302,255 @@ public class GymController {
 			log.info("gymsetShelves failure");
 			return CommonConstant.FORWARD_FAILURE;
 		}
+		return "redirect:/gym";
+	}
+	
+	@RequestMapping(value = "gym_edit/{id}", method = RequestMethod.GET)
+	public String editGym(@PathVariable String id, Model model) throws Exception {
+		
+		log.info("editGym called");
+		List<GymDto> gyms = gymInfoService.findGymById(id);
+
+		Properties properties = new Properties();
+		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
+		GymDto gymdto = new GymDto();
+		Long coachID = null;
+		int imgcount = 1;
+		String picture_url = properties.getProperty("picture_url");
+		
+		for (int i = 0; i < gyms.size(); i++) {
+			if (!gyms.get(i).getId().equals(coachID)) {
+				if (i != 0) {
+					gyms.add(gymdto);
+				}
+				gymdto = new GymDto();
+				gymdto = gyms.get(i);
+
+				gymdto.setPhoto1_id(gyms.get(i).getPhoto_id());
+				gymdto.setGympictureName1(gyms.get(i).getPhoto());
+				gymdto.setGympicture1(picture_url + "/" + gyms.get(i).getPhoto());
+				imgcount = 2;
+				coachID = gyms.get(i).getId();
+			} else {
+				if (imgcount == 2) {
+					gymdto.setPhoto2_id(gyms.get(i).getPhoto_id());
+					gymdto.setGympictureName2(gyms.get(i).getPhoto());
+					gymdto.setGympicture2(picture_url + "/" + gyms.get(i).getPhoto());
+				} else if (imgcount == 3) {
+					gymdto.setPhoto3_id(gyms.get(i).getPhoto_id());
+					gymdto.setGympictureName3(gyms.get(i).getPhoto());
+					gymdto.setGympicture3(picture_url + "/" + gyms.get(i).getPhoto());
+				} else if (imgcount == 4) {
+					gymdto.setPhoto4_id(gyms.get(i).getPhoto_id());
+					gymdto.setGympictureName4(gyms.get(i).getPhoto());
+					gymdto.setGympicture4(picture_url + "/" + gyms.get(i).getPhoto());
+				} else if (imgcount == 5) {
+					gymdto.setPhoto5_id(gyms.get(i).getPhoto_id());
+					gymdto.setGympictureName5(gyms.get(i).getPhoto());
+					gymdto.setGympicture5(picture_url + "/" + gyms.get(i).getPhoto());
+				}
+				imgcount++;
+			}
+		}
+		
+		model.addAttribute("gymList", gymdto);
+
+		return "editgym";
+	}
+	
+	// 20170304 Baojun Add
+	@RequestMapping(value = "/gym_update", method = RequestMethod.POST)
+	public String gymUpdate(@ModelAttribute Gym gymInfoForm, Map<String, Object> mode)
+			throws IllegalStateException, IOException, SQLException {
+
+		log.info("gymInfoAdd called");
+
+		List<GymPhoto> gymPhotos = new ArrayList<GymPhoto>();
+		GymPhoto gymPhoto = new GymPhoto();
+
+		Date d = new Date();
+		Long create_time = d.getTime();
+		gymInfoForm.setCreate_time(create_time);
+
+		Properties properties = new Properties();
+		properties.load(this.getClass().getClassLoader().getResourceAsStream("Webinfo.properties"));
+		String picturepositiontmp = properties.getProperty("gympictureposition");
+
+		StringBuilder filenamesave = new StringBuilder();
+		int position = 0;
+		String imgtime = new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());		
+		
+		// pic1
+		MultipartFile file = gymInfoForm.getGympicture1();
+		String picturename = file.getOriginalFilename();
+		position = picturename.indexOf(CommonConstant.POINT);
+		gymPhoto = new GymPhoto();
+		filenamesave = new StringBuilder();
+		if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
+			filenamesave.append(file.getName());
+			filenamesave.append(CommonConstant.UNDERLINE);
+			filenamesave.append(picturename.substring(0, position));
+			filenamesave.append(imgtime);
+			filenamesave.append(picturename.substring(position));
+			String path = picturepositiontmp + filenamesave.toString();
+
+			try {
+				file.transferTo(new File(path));
+				gymPhoto.setPhoto(filenamesave.toString());
+				gymPhoto.setId(gymInfoForm.getPhoto1_id());
+				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}		
+		
+		// pic2
+		file = gymInfoForm.getGympicture2();
+		picturename = file.getOriginalFilename();
+		position = picturename.indexOf(CommonConstant.POINT);
+		gymPhoto = new GymPhoto();
+		filenamesave = new StringBuilder();
+		if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
+			filenamesave.append(file.getName());
+			filenamesave.append(CommonConstant.UNDERLINE);
+			filenamesave.append(picturename.substring(0, position));
+			filenamesave.append(imgtime);
+			filenamesave.append(picturename.substring(position));
+			String path = picturepositiontmp + filenamesave.toString();
+
+			try {
+				file.transferTo(new File(path));
+				gymPhoto.setPhoto(filenamesave.toString());
+				gymPhoto.setId(gymInfoForm.getPhoto2_id());
+				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		// pic3
+		file = gymInfoForm.getGympicture3();
+		picturename = file.getOriginalFilename();
+		position = picturename.indexOf(CommonConstant.POINT);
+		gymPhoto = new GymPhoto();
+		filenamesave = new StringBuilder();
+		if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
+			filenamesave.append(file.getName());
+			filenamesave.append(CommonConstant.UNDERLINE);
+			filenamesave.append(picturename.substring(0, position));
+			filenamesave.append(imgtime);
+			filenamesave.append(picturename.substring(position));
+			String path = picturepositiontmp + filenamesave.toString();
+
+			try {
+				file.transferTo(new File(path));
+				gymPhoto.setPhoto(filenamesave.toString());
+				gymPhoto.setId(gymInfoForm.getPhoto3_id());
+				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		// pic4
+		file = gymInfoForm.getGympicture4();
+		picturename = file.getOriginalFilename();
+		position = picturename.indexOf(CommonConstant.POINT);
+		gymPhoto = new GymPhoto();
+		filenamesave = new StringBuilder();
+		if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
+			filenamesave.append(file.getName());
+			filenamesave.append(CommonConstant.UNDERLINE);
+			filenamesave.append(picturename.substring(0, position));
+			filenamesave.append(imgtime);
+			filenamesave.append(picturename.substring(position));
+			String path = picturepositiontmp + filenamesave.toString();
+
+			try {
+				file.transferTo(new File(path));
+				gymPhoto.setPhoto(filenamesave.toString());
+				gymPhoto.setId(gymInfoForm.getPhoto4_id());
+				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		// pic5
+		file = gymInfoForm.getGympicture5();
+		picturename = file.getOriginalFilename();
+		position = picturename.indexOf(CommonConstant.POINT);
+		gymPhoto = new GymPhoto();
+		filenamesave = new StringBuilder();
+		if (file != null && file.getOriginalFilename() != CommonConstant.BLANK) {
+			filenamesave.append(file.getName());
+			filenamesave.append(CommonConstant.UNDERLINE);
+			filenamesave.append(picturename.substring(0, position));
+			filenamesave.append(imgtime);
+			filenamesave.append(picturename.substring(position));
+			String path = picturepositiontmp + filenamesave.toString();
+
+			try {
+				file.transferTo(new File(path));
+				gymPhoto.setPhoto(filenamesave.toString());
+				gymPhoto.setId(gymInfoForm.getPhoto5_id());
+				gymPhotos.add(gymPhoto);
+				gymInfoForm.setAvatar(filenamesave.toString());
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+
+		String sucflg = gymInfoService.updateGymById(gymInfoForm);
+		if (sucflg.equals(CommonConstant.FORWARD_FAILURE)) {
+			return CommonConstant.FORWARD_FAILURE;
+		}
+		
+		String ucfflg = null;
+		for (GymPhoto gp : gymPhotos) {
+			ucfflg = gymInfoService.updateGymPhotoById(gp);
+			if (ucfflg.equals(CommonConstant.FORWARD_FAILURE)) {
+				return CommonConstant.FORWARD_FAILURE;
+			}
+		}
+
+		return "redirect:/gym";
+	}
+	
+	@RequestMapping(value = "/gym_delete/{id}", method = RequestMethod.GET)
+	public String deleteGym(@PathVariable Integer id, Map<String, Object> model) throws Exception {
+
+		log.info("deleteGym called");
+		String ucfflg = null;
+		Gym gym = new Gym();
+		gym.setId(id);
+		GymPhoto gymp = new GymPhoto();
+		gymp.setGym_id(id);
+		
+		ucfflg = gymInfoService.deleteGymById(gym);		
+		if (ucfflg.equals(CommonConstant.FORWARD_FAILURE)) {
+			return CommonConstant.FORWARD_FAILURE;
+		}
+		
+		ucfflg = gymInfoService.deleteGymPhotoById(gymp);	
+		if (ucfflg.equals(CommonConstant.FORWARD_FAILURE)) {
+			return CommonConstant.FORWARD_FAILURE;
+		}
+
 		return "redirect:/gym";
 	}
 }

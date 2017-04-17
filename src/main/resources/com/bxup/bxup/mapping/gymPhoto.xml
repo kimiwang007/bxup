@@ -18,12 +18,12 @@
 		values(#gym_id#,#photo#,#type#,#delete_status#)
 	</insert>
 	<!-- update -->
-	<update id="updateGymPhotoById" parameterClass="CoachPhotoForm"> 
+	<update id="updateGymPhotoById" parameterClass="GymPhotoForm"> 
 		update t_gym_photo_rel 
 		SET photo=#photo#
 		WHERE id=#id#
 	</update>
-	<update id="deleteGymPhotoById" parameterClass="CoachPhotoForm">          
+	<update id="deleteGymPhotoById" parameterClass="GymPhotoForm">          
 		update t_gym_photo_rel  
 		SET delete_status=-1
 		WHERE gym_id=#gym_id# 

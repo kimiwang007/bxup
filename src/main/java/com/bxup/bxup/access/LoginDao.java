@@ -481,10 +481,90 @@ public class LoginDao {
 			throw e;
 		}
 		sucflg = CommonConstant.FORWARD_SUCCESS;
-		log.info("SqlselectEventById End.");
+		log.info("FindGymById End.");
 		return gymForm;
 	}
 
+	public String updateGymById(Gym gymInfoForm) throws SQLException {
+		log.info("updateGymById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("updateGymById", gymInfoForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("updateGymById End.");
+			flag = true;
+		}
+		return sucflg;
+	}
+	
+	public String updateGymPhotoById(GymPhoto gymPhotoForm) throws SQLException {
+		log.info("updateGymPhotoById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("updateGymPhotoById", gymPhotoForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("updateGymPhotoById End.");
+			flag = true;
+		}
+		return sucflg;
+	}
+	
+	public String deleteGymPhotoById(GymPhoto gymPhotoForm) throws SQLException {
+		log.info("deleteGymPhotoById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("deleteGymPhotoById", gymPhotoForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("deleteGymPhotoById End.");
+			flag = true;
+		}
+		return sucflg;
+	}
+	
+	public String deleteGymById(Gym gymInfoForm) throws SQLException {
+		log.info("deleteGymById Start.");
+		boolean flag = false;
+		Object object = false;
+		String sucflg = null;
+		try {
+			object = sqlMap.update("deleteGymById", gymInfoForm);
+		} catch (SQLException e) {
+			log.error(e.getMessage());
+			sucflg = CommonConstant.FORWARD_FAILURE;
+			throw e;
+		}
+		if (object != null) {
+			sucflg = CommonConstant.FORWARD_SUCCESS;
+			log.info("deleteCoachById End.");
+			flag = true;
+		}
+		return sucflg;
+	}
+	
 	// 20170304 Baojun Add
 	public static List<FeedBack> SelectAllFeedBack() throws SQLException {
 		log.info("SqlSelectAllEvent Start.");

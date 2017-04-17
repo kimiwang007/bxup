@@ -20,18 +20,19 @@
 		<result column="tag" property="tag" jdbcType="VARCHAR" />
 		<result column="hot" property="hot" jdbcType="BIGINT" />
 		<result column="photo" property="photo" jdbcType="VARCHAR" />
+		<result column="photo_id" property="photo_id" jdbcType="BIGINT" />
 	</resultMap>
 	<!-- select -->
 	<select id="selectAllGym" resultMap="DtoResultMap">
 		select g.id id,g.name,g.avatar,g.create_time,g.approved,g.profile,g.address,
-		g.tel,g.user_id,g.province,g.shelves,g.city,g.tag,g.hot,rel.photo
-		from t_gym g left join t_gym_photo_rel rel on g.id = rel.gym_id
+		g.tel,g.user_id,g.province,g.shelves,g.city,g.tag,g.hot,rel.photo,rel.id photo_id
+		from t_gym g left join t_gym_photo_rel rel on g.id = rel.gym_id and rel.delete_status = 1
 		where g.delete_status = 1 order by g.id DESC
 	</select>
 	<select id="findGymForId" resultMap="DtoResultMap">
 		select g.id id,g.name,g.avatar,g.create_time,g.approved,g.profile,g.address,
-		g.tel,g.user_id,g.province,g.shelves,g.city,g.tag,g.hot,rel.photo
-		from t_gym g left join t_gym_photo_rel rel on g.id = rel.gym_id
+		g.tel,g.user_id,g.province,g.shelves,g.city,g.tag,g.hot,rel.photo,rel.id photo_id
+		from t_gym g left join t_gym_photo_rel rel on g.id = rel.gym_id and rel.delete_status = 1
 		where g.delete_status = 1 and g.id = #id# order by g.id DESC
 	</select>
 	<select id="selectAllGymName" resultClass="Gym">
@@ -62,13 +63,13 @@
 		SET shelves= shelves * -1
 		WHERE id=#id# 
 	</update>
-	<update id="updateGymById" parameterClass="Coach"> 
+	<update id="updateGymById" parameterClass="Gym"> 
 		update t_gym 
-		SET avatar=#avatar#,create_time=#create_time#,approved=#approved#,province=#province#,
+		SET name=#name#,avatar=#avatar#,create_time=#create_time#,approved=#approved#,province=#province#,
 		address=#address#,city=#city#,tel=#tel#,profile=#profile#,tag=#tag#,hot=#hot#
 		WHERE id=#id#
 	</update>
-	<update id="deleteGymById" parameterClass="Coach">          
+	<update id="deleteGymById" parameterClass="Gym">          
 		update t_gym  
 		SET delete_status=-1
 		WHERE id=#id# 

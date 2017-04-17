@@ -36,15 +36,35 @@ public class Gym {
 	
 	private Integer shelves;
 		
+	private Long photo1_id;
+	
 	private MultipartFile gympicture1;
+	
+	private String gympictureName1;
+	
+	private Long photo2_id;
 	
 	private MultipartFile gympicture2;
 	
+	private String gympictureName2;
+	
+	private Long photo3_id;
+	
 	private MultipartFile gympicture3;
+	
+	private String gympictureName3;
+	
+	private Long photo4_id;
 	
 	private MultipartFile gympicture4;
 	
+	private String gympictureName4;
+	
+	private Long photo5_id;
+	
 	private MultipartFile gympicture5;
+	
+	private String gympictureName5;
 
 	public int getId() {
 		return id;
@@ -213,4 +233,85 @@ public class Gym {
 	public void setGympicture5(MultipartFile gympicture5) {
 		this.gympicture5 = gympicture5;
 	}
+
+	public Long getPhoto1_id() {
+		return photo1_id;
+	}
+
+	public void setPhoto1_id(Long photo1_id) {
+		this.photo1_id = photo1_id;
+	}
+
+	public String getGympictureName1() {
+		return gympictureName1;
+	}
+
+	public void setGympictureName1(String gympictureName1) {
+		this.gympictureName1 = gympictureName1;
+	}
+
+	public Long getPhoto2_id() {
+		return photo2_id;
+	}
+
+	public void setPhoto2_id(Long photo2_id) {
+		this.photo2_id = photo2_id;
+	}
+
+	public String getGympictureName2() {
+		return gympictureName2;
+	}
+
+	public void setGympictureName2(String gympictureName2) {
+		this.gympictureName2 = gympictureName2;
+	}
+
+	public Long getPhoto3_id() {
+		return photo3_id;
+	}
+
+	public void setPhoto3_id(Long photo3_id) {
+		this.photo3_id = photo3_id;
+	}
+
+	public String getGympictureName3() {
+		return gympictureName3;
+	}
+
+	public void setGympictureName3(String gympictureName3) {
+		this.gympictureName3 = gympictureName3;
+	}
+
+	public Long getPhoto4_id() {
+		return photo4_id;
+	}
+
+	public void setPhoto4_id(Long photo4_id) {
+		this.photo4_id = photo4_id;
+	}
+
+	public String getGympictureName4() {
+		return gympictureName4;
+	}
+
+	public void setGympictureName4(String gympictureName4) {
+		this.gympictureName4 = gympictureName4;
+	}
+
+	public Long getPhoto5_id() {
+		return photo5_id;
+	}
+
+	public void setPhoto5_id(Long photo5_id) {
+		this.photo5_id = photo5_id;
+	}
+
+	public String getGympictureName5() {
+		return gympictureName5;
+	}
+
+	public void setGympictureName5(String gympictureName5) {
+		this.gympictureName5 = gympictureName5;
+	}
+	
 }

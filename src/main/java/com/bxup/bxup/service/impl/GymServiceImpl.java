@@ -20,27 +20,16 @@ public class GymServiceImpl implements GymService {
 
 	@Override
 	public List<GymDto> findAll() throws SQLException {
-		Logger log = Logger.getLogger(ResourceController.class.getName());
+		Logger log = Logger.getLogger(GymServiceImpl.class.getName());
 		dao = new LoginDao();
 		List<GymDto> gym = LoginDao.SelectAllGym();
 		log.info("selectAllGymSuccess");
 		return gym;
 	}
-
-
-
-	@Override
-	public List<GymDto> findGymById(String id) throws SQLException {
-		Logger log = Logger.getLogger(ResourceController.class.getName());
-		dao = new LoginDao();
-		List<GymDto> gym = LoginDao.FindGymById(id);
-		log.info("findGymById");
-		return gym;
-	}
 	
 	@Override
 	public List<Gym> findAllGymName() throws SQLException {
-		Logger log = Logger.getLogger(ResourceController.class.getName());
+		Logger log = Logger.getLogger(GymServiceImpl.class.getName());
 		dao = new LoginDao();
 		List<Gym> gym = LoginDao.SelectAllGymName();
 		log.info("selectAllGymSuccess");
@@ -62,7 +51,7 @@ public class GymServiceImpl implements GymService {
 	// 20170311 Baojun add
 	@Override
 	public Object findgymById(int gymid) {
-		Logger log = Logger.getLogger(ResourceController.class.getName());
+		Logger log = Logger.getLogger(GymServiceImpl.class.getName());
 		dao = new LoginDao();
 		Object gym = LoginDao.SelectAllGymnameById(gymid);
 		log.info("selectAllGymSuccess");
@@ -77,4 +66,49 @@ public class GymServiceImpl implements GymService {
 		log.info("updateshelves");
 		return reval;
 	}
+
+
+
+	@Override
+	public List<GymDto> findGymById(String id) throws SQLException {
+		Logger log = Logger.getLogger(GymServiceImpl.class.getName());
+		dao = new LoginDao();
+		List<GymDto> gym = LoginDao.FindGymById(id);
+		log.info("findGymById");
+		return gym;
+	}
+
+
+
+	@Override
+	public String updateGymById(Gym gymInfoForm) throws SQLException {
+		String sucflg = dao.updateGymById(gymInfoForm);
+		return sucflg;
+	}
+
+
+
+	@Override
+	public String updateGymPhotoById(GymPhoto gymPhotoForm) throws SQLException {
+		String sucflg = dao.updateGymPhotoById(gymPhotoForm);
+		return sucflg;
+	}
+
+
+
+	@Override
+	public String deleteGymById(Gym gymInfoForm) throws SQLException {
+		String sucflg = dao.deleteGymById(gymInfoForm);
+		return sucflg;
+	}
+
+
+
+	@Override
+	public String deleteGymPhotoById(GymPhoto gymPhotoForm) throws SQLException {
+		String sucflg = dao.deleteGymPhotoById(gymPhotoForm);
+		return sucflg;
+	}
+	
+	
 }

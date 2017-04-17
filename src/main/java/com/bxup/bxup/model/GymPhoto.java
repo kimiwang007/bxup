@@ -2,6 +2,8 @@ package com.bxup.bxup.model;
 
 public class GymPhoto {
 	
+	private Long id;
+	
 	private int gym_id ;
 	
 	private String photo;
@@ -11,6 +13,12 @@ public class GymPhoto {
 	private int delete_status ;
 	
 	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public int getGym_id() {
 		return gym_id;
 	}
