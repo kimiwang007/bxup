@@ -61,10 +61,10 @@
 							<td><a href="${item.iphone7url}" target="_blank"><c:out value="${item.iphone7_img}" /></a></td>
 							<td><a href="${item.iphone7purl}" target="_blank"><c:out value="${item.iphone7p_img}" /></a></td>
 							<td>
-								<c:if test="${item.shelves == 1}">
+								<c:if test="${item.shelves == -1}">
 									<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='welcomeimg/welcomeimg_shelves/${item.id}'" value="上架">
 								</c:if>
-								<c:if test="${item.shelves == -1}">
+								<c:if test="${item.shelves == 1}">
 									<input type="button"  class="btn btn-danger" onclick="javascript:window.location.href='welcomeimg/welcomeimg_shelves/${item.id}'" value="下架">
 								</c:if>
 							</td>

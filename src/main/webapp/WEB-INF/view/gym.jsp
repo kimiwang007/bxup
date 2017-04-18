@@ -72,10 +72,10 @@
 						<td><a href="${item.gympicture4}" target="_blank"><c:out value = "${item.gympictureName4}" /></a></td>
 						<td><a href="${item.gympicture5}" target="_blank"><c:out value = "${item.gympictureName5}" /></a></td>
 						<td>
-							<c:if test="${item.shelves == 1}">
+							<c:if test="${item.shelves == -1}">
 								<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='gym/gym_shelves/${item.id}'" value="上架">
 							</c:if>
-							<c:if test="${item.shelves == -1}">
+							<c:if test="${item.shelves == 1}">
 								<input type="button"  class="btn btn-danger" onclick="javascript:window.location.href='gym/gym_shelves/${item.id}'" value="下架">
 							</c:if>
 						</td>

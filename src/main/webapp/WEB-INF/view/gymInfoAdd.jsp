@@ -119,7 +119,7 @@ function back(){
 				<tr>
 					<td style="width: 70px">电话</td>
 					<td style="width: 220px"><input type="text" name="tel"
-						id="tel" size="35" maxlength="10" value="${tel}" /></td>
+						id="tel" size="35" maxlength="12" value="${tel}" /></td>
 				</tr>
 				<tr>
 					<td style="width: 70px">认证</td>

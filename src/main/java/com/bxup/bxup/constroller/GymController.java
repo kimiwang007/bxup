@@ -366,6 +366,7 @@ public class GymController {
 		log.info("gymInfoAdd called");
 
 		List<GymPhoto> gymPhotos = new ArrayList<GymPhoto>();
+		List<GymPhoto> gymPhotoAdd = new ArrayList<GymPhoto>();
 		GymPhoto gymPhoto = new GymPhoto();
 
 		Date d = new Date();
@@ -398,7 +399,13 @@ public class GymController {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
 				gymPhoto.setId(gymInfoForm.getPhoto1_id());
-				gymPhotos.add(gymPhoto);
+				gymPhoto.setGym_id(gymInfoForm.getId());
+				gymPhoto.setDelete_status(1);
+				if("".equals(gymInfoForm.getGympictureName1())){
+					gymPhotoAdd.add(gymPhoto);
+				} else {
+					gymPhotos.add(gymPhoto);
+				}
 				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
@@ -425,7 +432,13 @@ public class GymController {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
 				gymPhoto.setId(gymInfoForm.getPhoto2_id());
-				gymPhotos.add(gymPhoto);
+				gymPhoto.setGym_id(gymInfoForm.getId());
+				gymPhoto.setDelete_status(1);
+				if("".equals(gymInfoForm.getGympictureName2())){
+					gymPhotoAdd.add(gymPhoto);
+				} else {
+					gymPhotos.add(gymPhoto);
+				}
 				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
@@ -452,7 +465,13 @@ public class GymController {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
 				gymPhoto.setId(gymInfoForm.getPhoto3_id());
-				gymPhotos.add(gymPhoto);
+				gymPhoto.setGym_id(gymInfoForm.getId());
+				gymPhoto.setDelete_status(1);
+				if("".equals(gymInfoForm.getGympictureName3())){
+					gymPhotoAdd.add(gymPhoto);
+				} else {
+					gymPhotos.add(gymPhoto);
+				}
 				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
@@ -479,7 +498,13 @@ public class GymController {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
 				gymPhoto.setId(gymInfoForm.getPhoto4_id());
-				gymPhotos.add(gymPhoto);
+				gymPhoto.setGym_id(gymInfoForm.getId());
+				gymPhoto.setDelete_status(1);
+				if("".equals(gymInfoForm.getGympictureName4())){
+					gymPhotoAdd.add(gymPhoto);
+				} else {
+					gymPhotos.add(gymPhoto);
+				}
 				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
@@ -506,7 +531,13 @@ public class GymController {
 				file.transferTo(new File(path));
 				gymPhoto.setPhoto(filenamesave.toString());
 				gymPhoto.setId(gymInfoForm.getPhoto5_id());
-				gymPhotos.add(gymPhoto);
+				gymPhoto.setGym_id(gymInfoForm.getId());
+				gymPhoto.setDelete_status(1);
+				if("".equals(gymInfoForm.getGympictureName5())){
+					gymPhotoAdd.add(gymPhoto);
+				} else {
+					gymPhotos.add(gymPhoto);
+				}
 				gymInfoForm.setAvatar(filenamesave.toString());
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
@@ -528,6 +559,14 @@ public class GymController {
 			}
 		}
 
+		ucfflg = null;
+		for (GymPhoto gp : gymPhotoAdd) {
+			ucfflg = gymInfoService.insertGymPhoto(gp);
+			if (ucfflg.equals(CommonConstant.FORWARD_FAILURE)) {
+				return CommonConstant.FORWARD_FAILURE;
+			}
+		}
+		
 		return "redirect:/gym";
 	}
 	

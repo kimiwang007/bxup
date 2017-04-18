@@ -43,7 +43,7 @@
 	<update id="updateKnownById" parameterClass="SubscribeForm"> 
 		update t_subscribe 
 		SET title=#title#,tab=#tab#,url=#url#,img=#img#,publish_time=#publish_time#,
-		subscribe_type=#subscribe_type#,delete_status=#deleteStatus#
+		subscribe_type=#subscribe_type#
 		WHERE id=#id#
 	</update>
 	<update id="deleteKnownById" parameterClass="SubscribeForm"> 

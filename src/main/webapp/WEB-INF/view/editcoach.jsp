@@ -38,7 +38,7 @@ function onSubmit(cmd){
 				<tr>
 					<td>头像</td>
 					<td colspan="2">
-						<input type="hidden" value="${CoachList.avatar}">
+						<input type="hidden" name="avatar" value="${CoachList.avatar}">
 						<a href="${CoachList.pictureurl}" target="_blank"><c:out value = "${CoachList.avatar}" /></a><br/>
 						<input type="file" id="photo" name="photo" size="35" />
 					</td>

@@ -395,7 +395,8 @@ public class CoachController {
 
 		log.info("coachInfoupdate called");
 
-		List<CoachPhoto> coachPhotos = new ArrayList<CoachPhoto>();
+		List<CoachPhoto> coachPhotoupdate = new ArrayList<CoachPhoto>();
+		List<CoachPhoto> coachPhotoadd = new ArrayList<CoachPhoto>();
 		CoachPhoto coachPhoto = new CoachPhoto();
 
 		Date d = new Date();
@@ -458,7 +459,13 @@ public class CoachController {
 				file.transferTo(new File(path));
 				coachPhoto.setPhoto(filenamesave.toString());
 				coachPhoto.setId(coachInfoForm.getPhoto1_id());
-				coachPhotos.add(coachPhoto);
+				coachPhoto.setCoach_id(coachInfoForm.getId());
+				coachPhoto.setDelete_status(1);
+				if("".equals(coachInfoForm.getPictureName1())){
+					coachPhotoadd.add(coachPhoto);
+				} else {
+					coachPhotoupdate.add(coachPhoto);
+				}				
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -484,7 +491,13 @@ public class CoachController {
 				file.transferTo(new File(path));
 				coachPhoto.setPhoto(filenamesave.toString());
 				coachPhoto.setId(coachInfoForm.getPhoto2_id());
-				coachPhotos.add(coachPhoto);
+				coachPhoto.setCoach_id(coachInfoForm.getId());
+				coachPhoto.setDelete_status(1);
+				if("".equals(coachInfoForm.getPictureName2())){
+					coachPhotoadd.add(coachPhoto);
+				} else {
+					coachPhotoupdate.add(coachPhoto);
+				}
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -510,7 +523,13 @@ public class CoachController {
 				file.transferTo(new File(path));
 				coachPhoto.setPhoto(filenamesave.toString());
 				coachPhoto.setId(coachInfoForm.getPhoto3_id());
-				coachPhotos.add(coachPhoto);
+				coachPhoto.setCoach_id(coachInfoForm.getId());
+				coachPhoto.setDelete_status(1);
+				if("".equals(coachInfoForm.getPictureName3())){
+					coachPhotoadd.add(coachPhoto);
+				} else {
+					coachPhotoupdate.add(coachPhoto);
+				}
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -536,7 +555,13 @@ public class CoachController {
 				file.transferTo(new File(path));
 				coachPhoto.setPhoto(filenamesave.toString());
 				coachPhoto.setId(coachInfoForm.getPhoto4_id());
-				coachPhotos.add(coachPhoto);
+				coachPhoto.setCoach_id(coachInfoForm.getId());
+				coachPhoto.setDelete_status(1);
+				if("".equals(coachInfoForm.getPictureName4())){
+					coachPhotoadd.add(coachPhoto);
+				} else {
+					coachPhotoupdate.add(coachPhoto);
+				}
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -562,7 +587,13 @@ public class CoachController {
 				file.transferTo(new File(path));
 				coachPhoto.setPhoto(filenamesave.toString());
 				coachPhoto.setId(coachInfoForm.getPhoto5_id());
-				coachPhotos.add(coachPhoto);
+				coachPhoto.setCoach_id(coachInfoForm.getId());
+				coachPhoto.setDelete_status(1);
+				if("".equals(coachInfoForm.getPictureName5())){
+					coachPhotoadd.add(coachPhoto);
+				} else {
+					coachPhotoupdate.add(coachPhoto);
+				}
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -571,13 +602,20 @@ public class CoachController {
 		}
 
 		String ucfflg = null;
-		for (CoachPhoto cp : coachPhotos) {
+		for (CoachPhoto cp : coachPhotoupdate) {
 			ucfflg = coachInfoService.updateCoachPhotoById(cp);
 			if (ucfflg.equals(CommonConstant.FORWARD_FAILURE)) {
 				return CommonConstant.FORWARD_FAILURE;
 			}
 		}
-
+		
+		ucfflg = null;
+		for (CoachPhoto cp : coachPhotoadd) {
+			ucfflg = coachInfoService.insertCoachPhoto(cp);
+			if (ucfflg.equals(CommonConstant.FORWARD_FAILURE)) {
+				return CommonConstant.FORWARD_FAILURE;
+			}
+		}
 		log.info("coachInfoupdate success!");
 		return "redirect:/coach";
 	}
