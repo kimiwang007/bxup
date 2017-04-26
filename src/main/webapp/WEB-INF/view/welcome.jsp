@@ -9,7 +9,7 @@
 
 <html lang="true">
 <head>
-<title>eventadd.jsp</title>
+<title>welcome.jsp</title>
 <SCRIPT Language="JavaScript">
 
 	function onSubmit1(){

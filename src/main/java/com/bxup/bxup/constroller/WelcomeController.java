@@ -13,7 +13,7 @@ public class WelcomeController {
 	@RequestMapping(value = "/welcome1", method = RequestMethod.GET)
 	public String eventresources() {
 		log.info("WelcomePage called");
-		return "redirect:/resources";
+		return "redirect:/event";
 	}
 
 	@RequestMapping(value = "/welcome2", method = RequestMethod.GET)

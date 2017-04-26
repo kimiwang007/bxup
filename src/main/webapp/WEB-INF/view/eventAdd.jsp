@@ -50,7 +50,7 @@ function show(r){
 
 function back(){
 	if(window.confirm('是否返回活动列表 ?')){
-		javascript:window.location.href='resources'
+		javascript:window.location.href='event'
      }
 }
 

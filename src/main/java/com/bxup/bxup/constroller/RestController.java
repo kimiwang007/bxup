@@ -314,7 +314,7 @@ public class RestController {
 
 		if (sucflg.equals(CommonConstant.FORWARD_SUCCESS)) {
 			log.info("loginpictureAdd success!");
-			return "redirect:/resources";
+			return "redirect:/event";
 		} else {
 			return CommonConstant.FORWARD_FAILURE;
 		}

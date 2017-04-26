@@ -37,7 +37,7 @@ import com.bxup.bxup.model.Event;
 import com.bxup.bxup.service.ResourceService;
 
 @Controller
-@RequestMapping(value = "/resources")
+@RequestMapping(value = "/event")
 public class ResourceController {
 
 	static Logger log = Logger.getLogger(ResourceController.class.getName());
@@ -75,7 +75,7 @@ public class ResourceController {
 			if (!f.mkdir()) {
 				mode.put("message", "create Folder " + f.getPath() + " faile");
 				log.error("create Folder faile");
-				return "resources";
+				return "event";
 			}
 		}
 		File fa[] = f.listFiles();
@@ -93,7 +93,7 @@ public class ResourceController {
 		}
 
 		mode.put("resources", resources);
-		return "resources";
+		return "event";
 	}
 
 	@RequestMapping(value = "/event_edit/{id}", method = RequestMethod.GET)
@@ -134,7 +134,7 @@ public class ResourceController {
 			log.info("setShelves failure");
 			return CommonConstant.FORWARD_FAILURE;
 		}
-		return "redirect:/resources";
+		return "redirect:/event";
 	}
 
 	@RequestMapping(value = "/event_delete/{id}", method = RequestMethod.GET)
@@ -143,7 +143,7 @@ public class ResourceController {
 		log.info("delete called");
 		resourceService.deleteEventById(id);
 
-		return "redirect:/resources";
+		return "redirect:/event";
 	}
 
 	@RequestMapping(value = "/event_update/{id}", method = RequestMethod.POST)
@@ -210,7 +210,7 @@ public class ResourceController {
 		}
 		resourceService.updateEventById(eventInsertForm);
 
-		return "redirect:/resources";
+		return "redirect:/event";
 	}
 
 }

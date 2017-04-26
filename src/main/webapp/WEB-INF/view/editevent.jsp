@@ -26,7 +26,7 @@ function onSubmit(cmd){
 </head>	
 <h2>编辑活动</h2>	
 <body>
-<form enctype="multipart/form-data" action="resources/event_update/{id}" method="post">
+<form enctype="multipart/form-data" action="event/event_update/{id}" method="post">
 		<table>	
 				<input type="hidden" name="id" value="${id}"/>
 
@@ -114,7 +114,7 @@ function onSubmit(cmd){
 				</tr>  -->			
 		</table>		
            <br> <input type="submit" value="保存" onclick="return onSubmit('Save');" class="input">
-             	<input type="button"  class="blue_btn" value="返回" onclick="javascript:window.location.href='<%=basePath%>resources'"/>	
+             	<input type="button"  class="blue_btn" value="返回" onclick="javascript:window.location.href='<%=basePath%>event'"/>	
 </form>    
 </body>
 

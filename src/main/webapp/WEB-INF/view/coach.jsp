@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>resources.jsp</title>
+<title>coach.jsp</title>
 <link href="./resources/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="./resources/css/datatables.min.css" rel="stylesheet"/>
 <link href="./resources/css/rosy-standard.css" rel="stylesheet"/>

@@ -9,7 +9,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-<title>resources.jsp</title>
+<title>event.jsp</title>
 <link href="./resources/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="./resources/css/datatables.min.css" rel="stylesheet"/>
 <link href="./resources/css/rosy-standard.css" rel="stylesheet"/>
@@ -75,14 +75,14 @@
 							</td>
 							<td>
 								<c:if test="${item.shelves == -1}">
-									<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='resources/event_shelves/${item.id}'" value="上架">
+									<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='event/event_shelves/${item.id}'" value="上架">
 								</c:if>
 								<c:if test="${item.shelves == 1}">
-									<input type="button"  class="btn btn-danger" onclick="javascript:window.location.href='resources/event_shelves/${item.id}'" value="下架">
+									<input type="button"  class="btn btn-danger" onclick="javascript:window.location.href='event/event_shelves/${item.id}'" value="下架">
 								</c:if>
 							</td>
 							<td>
-								<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='resources/event_edit/${item.id}'" value="编辑">
+								<input type="button"  class="btn btn-primary" onclick="javascript:window.location.href='event/event_edit/${item.id}'" value="编辑">
 								<input type="button"  class="btn btn-primary" onclick="delConfirm(${item.id});" value="删除">
 							</td>
 						</tr>
@@ -105,7 +105,7 @@
     } );
     function delConfirm(itemId){	
     	if(window.confirm('确定要删除该活动吗?')){
-    		javascript:window.location.href='resources/event_delete/' + itemId
+    		javascript:window.location.href='event/event_delete/' + itemId
         }
     }
 

@@ -15,7 +15,7 @@
 
 <body>
 	<h2>File has been successfully uploaded</h2>
-    <br><input type="button"  class="blue_btn" value="Back" onclick="javascript:window.location.href='./resources'"/>
+    <br><input type="button"  class="blue_btn" value="Back" onclick="javascript:window.location.href='./event'"/>
 </body>
 
 </html>
